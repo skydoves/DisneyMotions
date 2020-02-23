@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools">
+
+  <data>
+
+    <variable
+      name="poster"
+      type="com.skydoves.disneymotions.model.Poster" />
+
+    <variable
+      name="activity"
+      type="androidx.appcompat.app.AppCompatActivity" />
+
+    <variable
+      name="container"
+      type="androidx.coordinatorlayout.widget.CoordinatorLayout" />
+
+    <variable
+      name="fab"
+      type="com.google.android.material.floatingactionbutton.FloatingActionButton" />
+  </data>
+
+  <androidx.coordinatorlayout.widget.CoordinatorLayout
+    android:id="@+id/detail_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:fitsSystemWindows="false">
+
+    <com.google.android.material.appbar.AppBarLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:elevation="4dp"
+      app:bindFab="@{fab}">
+
+      <com.google.android.material.appbar.CollapsingToolbarLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background"
+        app:contentScrim="@color/colorPrimary"
+        app:expandedTitleGravity="top|left"
+        app:expandedTitleTextAppearance="@style/CollapsedExpandedTitleText"
+        app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:background="@color/background">
+
+          <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/profile_detail_background"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintDimensionRatio="1:1.2"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:loadImage="@{poster.poster}" />
+
+          <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:src="@drawable/ic_add"
+            app:backgroundTint="@color/colorPrimary"
+            app:layout_constraintBottom_toBottomOf="@id/profile_detail_background"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/profile_detail_background"
+            app:layout_goneMarginBottom="26dp"
+            app:tint="@color/white" />
+
+          <Space
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            app:layout_constraintBottom_toBottomOf="@id/profile_detail_background"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/profile_detail_background" />
+
+          <com.google.android.material.card.MaterialCardView
+            android:id="@+id/detail_plot"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="60dp"
+            android:visibility="gone"
+            app:cardBackgroundColor="@color/background"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:transformContainer="@{container}"
+            app:transformFab="@{fab}">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:padding="16dp">
+
+              <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/detail_plot_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/plot"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Zootopia" />
+
+              <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/detail_plot_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@{poster.plot}"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+                android:textColor="@color/white_87"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/detail_plot_title"
+                tools:text="Zootopia" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+          </com.google.android.material.card.MaterialCardView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.appbar.MaterialToolbar
+          android:id="@+id/detail_toolbar"
+          android:layout_width="match_parent"
+          android:layout_height="?attr/actionBarSize"
+          app:layout_collapseMode="pin"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toTopOf="parent"
+          app:simpleToolbarTitle="@{poster.name}"
+          app:simpleToolbarWithHome="@{activity}" />
+      </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:padding="21dp"
+      app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+      <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatTextView
+          android:id="@+id/detail_title"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@{poster.name}"
+          android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+          android:textSize="28sp"
+          android:textStyle="bold"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toTopOf="parent"
+          tools:text="Zootopia" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+          android:id="@+id/detail_description"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="8dp"
+          android:text="@{poster.description}"
+          android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+          android:textColor="@color/white_87"
+          android:textStyle="italic"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/detail_title"
+          tools:text="Zootopia" />
+
+      </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+  </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</layout>

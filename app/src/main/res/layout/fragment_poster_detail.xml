@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto">
+
+  <data>
+
+    <variable
+      name="poster"
+      type="com.skydoves.disneymotions.model.Poster" />
+  </data>
+
+  <androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
+
+    <androidx.appcompat.widget.AppCompatImageView
+      android:id="@+id/profile_detail_background"
+      android:layout_width="0dp"
+      android:layout_height="0dp"
+      android:scaleType="centerCrop"
+      app:layout_constraintDimensionRatio="1:1.2"
+      app:layout_constraintLeft_toLeftOf="parent"
+      app:layout_constraintRight_toRightOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:loadImage="@{poster.poster}" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+      android:id="@+id/poster_detail_close"
+      android:layout_width="48dp"
+      android:layout_height="48dp"
+      android:layout_margin="5dp"
+      android:padding="10dp"
+      android:src="@drawable/ic_arrow_back"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent" />
+
+  </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
