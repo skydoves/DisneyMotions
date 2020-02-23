@@ -16,6 +16,11 @@
     <item name="android:textSize">18sp</item>
   </style>
 
+  <style name="CircleImageStyle" parent="">
+    <item name="cornerFamily">rounded</item>
+    <item name="cornerSize">50%</item>
+  </style>
+
   <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
   <style name="CollapsedExpandedTitleText" parent="AppTheme">

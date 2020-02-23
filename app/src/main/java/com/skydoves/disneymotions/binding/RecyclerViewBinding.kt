@@ -23,6 +23,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.skydoves.baserecyclerviewadapter.BaseAdapter
 import com.skydoves.disneymotions.model.Poster
 import com.skydoves.disneymotions.view.adapter.PosterAdapter
+import com.skydoves.disneymotions.view.adapter.PosterCircleAdapter
 import com.skydoves.disneymotions.view.adapter.PosterLineAdapter
 import com.skydoves.whatif.whatIfNotNull
 import com.skydoves.whatif.whatIfNotNullOrEmpty
@@ -50,5 +51,12 @@ fun bindAdapterPosterLIst(view: RecyclerView, posters: List<Poster>?) {
 fun bindAdapterPosterLineLIst(view: RecyclerView, posters: List<Poster>?) {
   posters.whatIfNotNullOrEmpty {
     (view.adapter as? PosterLineAdapter)?.addPosterList(it)
+  }
+}
+
+@BindingAdapter("adapterPosterCircleLIst")
+fun bindAdapterPosterCircleLIst(view: RecyclerView, posters: List<Poster>?) {
+  posters.whatIfNotNullOrEmpty {
+    (view.adapter as? PosterCircleAdapter)?.addPosterList(it)
   }
 }
