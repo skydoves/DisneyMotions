@@ -1,9 +1,6 @@
 
-<center>
-<b style="font-size:36px">DisneyMotions</b>
-</center>
-</br>
-<p align="center">
+<h1 align="center">DisneyMotions</h1></br>
+<p align="center">  
 A demo Disney app using <a href="https://material.io/design/motion/the-motion-system.html"> transformation motions </a> based on MVVM architecture.<br>
 The motion system is included in the 1.2.0-alpha05 released material version.
 </p>
