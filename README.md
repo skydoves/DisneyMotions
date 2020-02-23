@@ -18,8 +18,9 @@ Go to the [Releases](https://github.com/skydoves/DisneyMotions/releases) to down
 
 ## Screeshots
 <p align="center">
-<img src="/preview/preview0.gif" width="33%"/>
-<img src="/preview/preview1.gif" width="33%"/>
+<img src="/preview/preview0.gif" width="32%"/>
+<img src="/preview/preview1.gif" width="32%"/>
+<img src="/preview/preview2.gif" width="32%"/>
 </p>
 
 

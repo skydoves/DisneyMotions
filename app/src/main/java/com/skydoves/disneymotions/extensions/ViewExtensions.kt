@@ -17,9 +17,6 @@
 package com.skydoves.disneymotions.extensions
 
 import android.view.View
-import android.view.ViewAnimationUtils
-import androidx.core.content.ContextCompat
-import com.skydoves.disneymotions.R
 
 /** makes visible a view. */
 fun View.visible() {
@@ -29,19 +26,4 @@ fun View.visible() {
 /** makes gone a view. */
 fun View.gone() {
   visibility = View.GONE
-}
-
-fun View.circularRevealedAtCenter() {
-  val view = this
-  val cx = (view.left + view.right) / 2
-  val cy = (view.top + view.bottom) / 2
-  val finalRadius = view.width.coerceAtLeast(view.height)
-
-  if (view.isAttachedToWindow) {
-    val anim = ViewAnimationUtils.createCircularReveal(view, cx, cy, 0f, finalRadius.toFloat())
-    view.visible()
-    view.setBackgroundColor(ContextCompat.getColor(view.context, R.color.background))
-    anim.duration = 550
-    anim.start()
-  }
 }
