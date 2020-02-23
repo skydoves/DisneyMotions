@@ -139,7 +139,7 @@
           app:layout_constraintStart_toStartOf="parent"
           app:layout_constraintTop_toTopOf="parent"
           app:simpleToolbarTitle="@{poster.name}"
-          app:simpleToolbarWithHsimpleToolbarTitleome="@{activity}" />
+          app:simpleToolbarWithHome="@{activity}" />
       </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
