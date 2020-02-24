@@ -21,6 +21,7 @@ import android.app.ActivityOptions
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.MenuItem
 import android.view.View
 import com.skydoves.disneymotions.R
 import com.skydoves.disneymotions.base.DatabindingActivity
@@ -44,6 +45,13 @@ class PosterDetailActivity : DatabindingActivity() {
       container = detailContainer
       fab = fabMore
     }
+  }
+
+  override fun onOptionsItemSelected(item: MenuItem): Boolean {
+    if (item.itemId == android.R.id.home) {
+      onBackPressed()
+    }
+    return super.onOptionsItemSelected(item)
   }
 
   companion object {
