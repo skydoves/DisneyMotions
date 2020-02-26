@@ -47,7 +47,6 @@ fun AppCompatActivity.applyMaterialTransform(transitionName: String) {
 
   // set up shared element transition
   setEnterSharedElementCallback(MaterialContainerTransformSharedElementCallback())
-  setEnterSharedElementCallback(MaterialContainerTransformSharedElementCallback())
   window.sharedElementEnterTransition = getContentTransform()
   window.sharedElementReturnTransition = getContentTransform()
 }
