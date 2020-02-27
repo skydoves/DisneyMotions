@@ -19,7 +19,6 @@
 package com.skydoves.disneymotions
 
 import android.app.Application
-import com.bumptech.glide.request.target.ViewTarget
 import com.skydoves.disneymotions.di.networkModule
 import com.skydoves.disneymotions.di.persistenceModule
 import com.skydoves.disneymotions.di.repositoryModule
@@ -32,8 +31,6 @@ class DisneyApplication : Application() {
 
   override fun onCreate() {
     super.onCreate()
-
-    ViewTarget.setTagId(R.string.app_name)
 
     startKoin {
       androidContext(this@DisneyApplication)
