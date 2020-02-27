@@ -16,15 +16,14 @@
 
   <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="4dp">
+    android:layout_height="match_parent">
 
     <androidx.recyclerview.widget.RecyclerView
       android:id="@+id/recyclerView"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
       android:clipToPadding="false"
-      android:paddingBottom="58dp"
+      android:padding="4dp"
       app:adapter="@{adapter}"
       app:adapterPosterLIst="@{viewModel.posterListLiveData}"
       app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"

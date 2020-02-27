@@ -36,8 +36,7 @@ ext.versions = [
 
     // glide
     glideVersion        : '4.9.0',
-    glidePaletteVersion : '2.1.2',
-    
+
     // adapter
     baseAdapter         : '0.1.3',
 
