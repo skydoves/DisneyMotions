@@ -24,7 +24,7 @@ import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 
 /**
- * ViewModelFragment is an abstract class for providing [DataBindingUtil].
+ * DatabindingFragment is an abstract class for providing [DataBindingUtil].
  * provides implementations of only [ViewDataBinding] from an abstract information.
  * Do not modify this class. This is a first-level abstraction class.
  * If you want to add more specifications, make another class which extends [DatabindingFragment].
