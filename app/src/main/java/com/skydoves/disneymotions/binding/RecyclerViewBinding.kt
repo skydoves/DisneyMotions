@@ -40,22 +40,22 @@ fun bindToast(view: RecyclerView, text: LiveData<String>) {
   }
 }
 
-@BindingAdapter("adapterPosterLIst")
-fun bindAdapterPosterLIst(view: RecyclerView, posters: List<Poster>?) {
+@BindingAdapter("adapterPosterList")
+fun bindAdapterPosterList(view: RecyclerView, posters: List<Poster>?) {
   posters.whatIfNotNullOrEmpty {
     (view.adapter as? PosterAdapter)?.addPosterList(it)
   }
 }
 
-@BindingAdapter("adapterPosterLineLIst")
-fun bindAdapterPosterLineLIst(view: RecyclerView, posters: List<Poster>?) {
+@BindingAdapter("adapterPosterLineList")
+fun bindAdapterPosterLineList(view: RecyclerView, posters: List<Poster>?) {
   posters.whatIfNotNullOrEmpty {
     (view.adapter as? PosterLineAdapter)?.addPosterList(it)
   }
 }
 
-@BindingAdapter("adapterPosterCircleLIst")
-fun bindAdapterPosterCircleLIst(view: RecyclerView, posters: List<Poster>?) {
+@BindingAdapter("adapterPosterCircleList")
+fun bindAdapterPosterCircleList(view: RecyclerView, posters: List<Poster>?) {
   posters.whatIfNotNullOrEmpty {
     (view.adapter as? PosterCircleAdapter)?.addPosterList(it)
   }

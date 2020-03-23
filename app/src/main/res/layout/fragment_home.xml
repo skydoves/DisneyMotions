@@ -25,7 +25,7 @@
       android:clipToPadding="false"
       android:padding="4dp"
       app:adapter="@{adapter}"
-      app:adapterPosterLIst="@{viewModel.posterListLiveData}"
+      app:adapterPosterList="@{viewModel.posterListLiveData}"
       app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
       app:spanCount="2"
       app:toast="@{viewModel.toastLiveData}"

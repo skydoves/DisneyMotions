@@ -26,7 +26,7 @@
       android:orientation="vertical"
       android:padding="4dp"
       app:adapter="@{adapter}"
-      app:adapterPosterLineLIst="@{viewModel.posterListLiveData}"
+      app:adapterPosterLineList="@{viewModel.posterListLiveData}"
       app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
       app:toast="@{viewModel.toastLiveData}"
       tools:listitem="@layout/item_poster_line" />
