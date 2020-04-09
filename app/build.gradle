@@ -12,6 +12,11 @@ android {
         targetSdkVersion versions.compileSdk
         versionCode versions.versionCode
         versionName versions.versionName
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
+            }
+        }
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -25,6 +30,9 @@ android {
     }
     androidExtensions {
         experimental = true
+    }
+    sourceSets {
+        test.assets.srcDirs += files("$projectDir/schemas".toString())
     }
     testOptions {
         unitTests {
