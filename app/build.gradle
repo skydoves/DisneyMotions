@@ -26,6 +26,11 @@ android {
     androidExtensions {
         experimental = true
     }
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
 }
 
 dependencies {
@@ -71,6 +76,12 @@ dependencies {
 
     // debugging
     implementation "com.jakewharton.timber:timber:$versions.timberVersion"
+
+    // unit test
+    testImplementation "junit:junit:$versions.junitVersion"
+    testImplementation "androidx.test:core:$versions.androidxTest"
+    testImplementation "org.robolectric:robolectric:$versions.robolectricVersion"
+    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$versions.mockitoKotlinVersion"
 }
 
 apply from: '../spotless.gradle'
