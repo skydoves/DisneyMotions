@@ -29,6 +29,7 @@ android {
     testOptions {
         unitTests {
             includeAndroidResources = true
+            returnDefaultValues = true
         }
     }
 }
@@ -58,6 +59,7 @@ dependencies {
     implementation "com.squareup.retrofit2:retrofit:$versions.retrofitVersion"
     implementation "com.squareup.okhttp3:logging-interceptor:$versions.okhttpVersion"
     implementation "com.squareup.retrofit2:converter-gson:$versions.retrofitVersion"
+    testImplementation "com.squareup.okhttp3:mockwebserver:$versions.okhttpVersion"
 
     // coroutines
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$versions.coroutinesVersion"
@@ -82,6 +84,7 @@ dependencies {
     testImplementation "androidx.test:core:$versions.androidxTest"
     testImplementation "org.robolectric:robolectric:$versions.robolectricVersion"
     testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$versions.mockitoKotlinVersion"
+    testImplementation "org.mockito:mockito-inline:$versions.mockitoInlineVersion"
 }
 
 apply from: '../spotless.gradle'
