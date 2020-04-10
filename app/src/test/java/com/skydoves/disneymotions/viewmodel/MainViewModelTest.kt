@@ -31,7 +31,7 @@ import com.skydoves.disneymotions.repository.MainRepository
 import com.skydoves.disneymotions.utils.MockTestUtil
 import com.skydoves.disneymotions.view.ui.main.MainViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.test.runBlockingTest
+import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -60,7 +60,7 @@ class MainViewModelTest {
   }
 
   @Test
-  fun fetchDisneyPosterListTest() = runBlockingTest {
+  fun fetchDisneyPosterListTest() = runBlocking {
     val mockData = MockTestUtil.mockPosterList()
     whenever(posterDao.getPosterList()).thenReturn(mockData)
 
