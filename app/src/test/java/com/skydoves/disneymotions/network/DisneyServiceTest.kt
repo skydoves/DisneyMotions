@@ -30,7 +30,7 @@ import retrofit2.Response
 class DisneyServiceTest : ApiAbstract<DisneyService>() {
 
   private lateinit var service: DisneyService
-  val client: DisneyClient = mock()
+  private val client: DisneyClient = mock()
 
   @Before
   fun initService() {
