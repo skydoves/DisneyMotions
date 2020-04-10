@@ -16,8 +16,8 @@
 
 package com.skydoves.disneymotions.persistence
 
-import com.skydoves.themovies2.utils.MockTestUtil.mockPoster
-import com.skydoves.themovies2.utils.MockTestUtil.mockPosterList
+import com.skydoves.disneymotions.utils.MockTestUtil.mockPoster
+import com.skydoves.disneymotions.utils.MockTestUtil.mockPosterList
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.core.Is.`is`
 import org.junit.Before

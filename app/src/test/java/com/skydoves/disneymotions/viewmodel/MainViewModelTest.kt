@@ -28,8 +28,8 @@ import com.skydoves.disneymotions.network.DisneyClient
 import com.skydoves.disneymotions.network.DisneyService
 import com.skydoves.disneymotions.persistence.PosterDao
 import com.skydoves.disneymotions.repository.MainRepository
+import com.skydoves.disneymotions.utils.MockTestUtil
 import com.skydoves.disneymotions.view.ui.main.MainViewModel
-import com.skydoves.themovies2.utils.MockTestUtil
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import org.junit.Before

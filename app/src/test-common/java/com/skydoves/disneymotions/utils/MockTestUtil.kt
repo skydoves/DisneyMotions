@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.skydoves.themovies2.utils
+package com.skydoves.disneymotions.utils
 
 import com.skydoves.disneymotions.model.Poster
 

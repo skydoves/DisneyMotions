@@ -20,7 +20,7 @@ import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
 import com.skydoves.disneymotions.persistence.PosterDao
-import com.skydoves.themovies2.utils.MockTestUtil.mockPoster
+import com.skydoves.disneymotions.utils.MockTestUtil.mockPoster
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.core.Is.`is`
 import org.junit.Before

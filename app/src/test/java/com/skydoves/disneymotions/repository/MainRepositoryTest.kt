@@ -30,7 +30,7 @@ import com.skydoves.disneymotions.network.ApiUtil.getCall
 import com.skydoves.disneymotions.network.DisneyClient
 import com.skydoves.disneymotions.network.DisneyService
 import com.skydoves.disneymotions.persistence.PosterDao
-import com.skydoves.themovies2.utils.MockTestUtil.mockPosterList
+import com.skydoves.disneymotions.utils.MockTestUtil.mockPosterList
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
