@@ -48,6 +48,13 @@ Go to the [Releases](https://github.com/skydoves/DisneyMotions/releases) to down
 - [Timber](https://github.com/JakeWharton/timber) - logging
 - Ripple animation, Shared element container transform/transition
 
+## Unit Testing Frameworks
+Unit Tests verify the interactions of viewmodels between repositories and dao & REST api requests.
+- [Robolectric](https://github.com/robolectric/robolectric) - Robolectric is the industry-standard unit testing framework for Android.
+- [Mockito-Kotlin](https://github.com/nhaarman/mockito-kotlin) - a small library that provides helper functions to work with Mockito in Kotlin.
+
+![screenshot483387955](https://user-images.githubusercontent.com/24237865/79007747-c47c1b00-7b96-11ea-95c0-f6579f2d865b.png)
+
 ## Find this repository useful? :heart:
 Support it by joining __[stargazers](https://github.com/skydoves/DisneyMotions/stargazers)__ for this repository. :star: <br>
 And __[follow](https://github.com/skydoves)__ me for my next creations! 🤩
