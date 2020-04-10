@@ -14,9 +14,7 @@
  * limitations under the License.
  */
 
-@file:Suppress("SpellCheckingInspection")
-
-package com.skydoves.disneymotions.repository
+package com.skydoves.disneymotions.viewmodel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
@@ -26,11 +24,12 @@ import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
 import com.skydoves.disneymotions.MainCoroutinesRule
 import com.skydoves.disneymotions.model.Poster
-import com.skydoves.disneymotions.network.ApiUtil.getCall
 import com.skydoves.disneymotions.network.DisneyClient
 import com.skydoves.disneymotions.network.DisneyService
 import com.skydoves.disneymotions.persistence.PosterDao
-import com.skydoves.themovies2.utils.MockTestUtil.mockPosterList
+import com.skydoves.disneymotions.repository.MainRepository
+import com.skydoves.disneymotions.view.ui.main.MainViewModel
+import com.skydoves.themovies2.utils.MockTestUtil
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
@@ -38,11 +37,12 @@ import org.junit.Rule
 import org.junit.Test
 
 @ExperimentalCoroutinesApi
-class MainRepositoryTest {
+class MainViewModelTest {
 
-  private lateinit var repository: MainRepository
-  private lateinit var client: DisneyClient
-  private val service: DisneyService = mock()
+  private lateinit var viewModel: MainViewModel
+  private lateinit var mainRepository: MainRepository
+  private val disneyService: DisneyService = mock()
+  private val disneyClient: DisneyClient = DisneyClient(disneyService)
   private val posterDao: PosterDao = mock()
 
   @ExperimentalCoroutinesApi
@@ -55,28 +55,24 @@ class MainRepositoryTest {
   @ExperimentalCoroutinesApi
   @Before
   fun setup() {
-    client = DisneyClient(service)
-    repository = MainRepository(client, posterDao)
+    mainRepository = MainRepository(disneyClient, posterDao)
+    viewModel = MainViewModel(mainRepository)
   }
 
   @Test
-  fun loadDisneyPostersTest() = runBlocking {
-    val mockData = mockPosterList()
-    whenever(posterDao.getPosterList()).thenReturn(emptyList())
-    whenever(service.fetchDisneyPosterList()).thenReturn(getCall(mockData))
+  fun fetchDisneyPosterListTest() = runBlocking {
+    val mockData = MockTestUtil.mockPosterList()
+    whenever(posterDao.getPosterList()).thenReturn(mockData)
 
-    val loadData = repository.loadDisneyPosters { }
-    verify(posterDao, atLeastOnce()).getPosterList()
-    verify(service, atLeastOnce()).fetchDisneyPosterList()
-
+    val fetchedData = viewModel.posterListLiveData
     val observer: Observer<List<Poster>> = mock()
-    loadData.observeForever(observer)
+    fetchedData.observeForever(observer)
 
-    val updatedData = mockPosterList()
-    whenever(posterDao.getPosterList()).thenReturn(updatedData)
+    viewModel.fetchDisneyPosterList()
+    viewModel.fetchDisneyPosterList()
 
-    loadData.postValue(updatedData)
-    verify(observer).onChanged(updatedData)
-    loadData.removeObserver(observer)
+    verify(posterDao, atLeastOnce()).getPosterList()
+    verify(observer).onChanged(mockData)
+    fetchedData.removeObserver(observer)
   }
 }
