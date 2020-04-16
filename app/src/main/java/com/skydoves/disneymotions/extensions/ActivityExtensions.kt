@@ -25,8 +25,8 @@ import com.google.android.material.transition.MaterialContainerTransform
 import com.google.android.material.transition.MaterialContainerTransformSharedElementCallback
 
 /** get a material container arc transform. */
-fun AppCompatActivity.getContentTransform(): MaterialContainerTransform {
-  return MaterialContainerTransform(this).apply {
+internal fun getContentTransform(): MaterialContainerTransform {
+  return MaterialContainerTransform().apply {
     addTarget(android.R.id.content)
     duration = 450
     pathMotion = MaterialArcMotion()

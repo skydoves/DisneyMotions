@@ -108,7 +108,7 @@ fun bindTransformFab(view: View, fab: FloatingActionButton, container: Coordinat
 }
 
 internal fun getTransform(mStartView: View, mEndView: View): MaterialContainerTransform {
-  return MaterialContainerTransform(mStartView.context).apply {
+  return MaterialContainerTransform().apply {
     startView = mStartView
     endView = mEndView
     pathMotion = MaterialArcMotion()
