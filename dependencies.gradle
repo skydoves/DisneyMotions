@@ -27,12 +27,13 @@ ext.versions = [
     // network
     retrofitVersion     : '2.6.0',
     okhttpVersion       : '4.1.0',
+    sandwichVersion     : '1.0.1',
 
     // coroutines
     coroutinesVersion   : '1.3.0',
 
     // glide
-    glideVersion        : '4.9.0',
+    glideVersion        : '4.10.0',
 
     // adapter
     baseAdapter         : '0.1.3',

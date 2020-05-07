@@ -19,6 +19,7 @@ package com.skydoves.disneymotions.network
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.whenever
 import com.skydoves.disneymotions.model.Poster
+import com.skydoves.sandwich.ApiResponse
 import java.io.IOException
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.CoreMatchers.instanceOf

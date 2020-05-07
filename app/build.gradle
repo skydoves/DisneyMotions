@@ -66,7 +66,7 @@ dependencies {
     implementation "org.koin:koin-android-viewmodel:$versions.koinVersion"
 
     // network
-    implementation "com.squareup.retrofit2:retrofit:$versions.retrofitVersion"
+    implementation "com.github.skydoves:sandwich:$versions.sandwichVersion"
     implementation "com.squareup.okhttp3:logging-interceptor:$versions.okhttpVersion"
     implementation "com.squareup.retrofit2:converter-gson:$versions.retrofitVersion"
     testImplementation "com.squareup.okhttp3:mockwebserver:$versions.okhttpVersion"

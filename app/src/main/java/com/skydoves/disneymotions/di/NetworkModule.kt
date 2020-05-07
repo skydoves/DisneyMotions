@@ -16,9 +16,10 @@
 
 package com.skydoves.disneymotions.di
 
-import com.skydoves.disneymotions.network.DisneyClient
+import com.skydoves.disneymotions.model.Poster
 import com.skydoves.disneymotions.network.DisneyService
 import com.skydoves.disneymotions.network.RequestInterceptor
+import com.skydoves.sandwich.ResponseDataSource
 import okhttp3.OkHttpClient
 import org.koin.dsl.module
 import retrofit2.Retrofit
@@ -35,12 +36,13 @@ val networkModule = module {
   single {
     Retrofit.Builder()
       .client(get<OkHttpClient>())
-      .baseUrl("https://gist.githubusercontent.com/skydoves/aa3bbbf495b0fa91db8a9e89f34e4873/raw/a1a13d37027e8920412da5f00f6a89c5a3dbfb9a/")
+      .baseUrl(
+        "https://gist.githubusercontent.com/skydoves/aa3bbbf495b0fa91db8a9e89f34e4873/raw/a1a13d37027e8920412da5f00f6a89c5a3dbfb9a/")
       .addConverterFactory(GsonConverterFactory.create())
       .build()
   }
 
   single { get<Retrofit>().create(DisneyService::class.java) }
 
-  single { DisneyClient(get()) }
+  single { ResponseDataSource<List<Poster>>() }
 }
