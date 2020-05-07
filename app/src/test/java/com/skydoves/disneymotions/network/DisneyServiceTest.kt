@@ -20,6 +20,7 @@ import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.whenever
 import com.skydoves.disneymotions.model.Poster
 import com.skydoves.sandwich.ApiResponse
+import com.skydoves.sandwich.ResponseDataSource
 import java.io.IOException
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.CoreMatchers.instanceOf
@@ -31,7 +32,7 @@ import retrofit2.Response
 class DisneyServiceTest : ApiAbstract<DisneyService>() {
 
   private lateinit var service: DisneyService
-  private val client: DisneyClient = mock()
+  private val dataSource: ResponseDataSource<List<Poster>> = mock()
 
   @Before
   fun initService() {
@@ -50,6 +51,7 @@ class DisneyServiceTest : ApiAbstract<DisneyService>() {
     assertThat(responseBody[0].name, `is`("Frozen II"))
     assertThat(responseBody[0].release, `is`("2019"))
 
+    val call = service.fetchDisneyPosterList()
     val onResult: (response: ApiResponse<List<Poster>>) -> Unit = {
       assertThat(it, instanceOf(ApiResponse.Success::class.java))
       val response: List<Poster> = requireNotNull((it as ApiResponse.Success).data)
@@ -58,11 +60,12 @@ class DisneyServiceTest : ApiAbstract<DisneyService>() {
       assertThat(response[0].release, `is`("2019"))
     }
 
-    whenever(client.fetchDisneyPosters(onResult)).thenAnswer {
+    whenever(dataSource.combine(call, onResult)).thenAnswer {
       val response: (response: ApiResponse<List<Poster>>) -> Unit = it.getArgument(0)
       response(ApiResponse.Success(Response.success(responseBody)))
+      dataSource.request()
     }
 
-    client.fetchDisneyPosters(onResult)
+    dataSource.combine(call, onResult)
   }
 }

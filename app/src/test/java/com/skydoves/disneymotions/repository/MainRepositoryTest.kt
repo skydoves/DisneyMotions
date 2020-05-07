@@ -27,10 +27,10 @@ import com.nhaarman.mockitokotlin2.whenever
 import com.skydoves.disneymotions.MainCoroutinesRule
 import com.skydoves.disneymotions.model.Poster
 import com.skydoves.disneymotions.network.ApiUtil.getCall
-import com.skydoves.disneymotions.network.DisneyClient
 import com.skydoves.disneymotions.network.DisneyService
 import com.skydoves.disneymotions.persistence.PosterDao
 import com.skydoves.disneymotions.utils.MockTestUtil.mockPosterList
+import com.skydoves.sandwich.ResponseDataSource
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
@@ -41,7 +41,7 @@ import org.junit.Test
 class MainRepositoryTest {
 
   private lateinit var repository: MainRepository
-  private lateinit var client: DisneyClient
+  private val dataSource: ResponseDataSource<List<Poster>> = ResponseDataSource()
   private val service: DisneyService = mock()
   private val posterDao: PosterDao = mock()
 
@@ -55,8 +55,7 @@ class MainRepositoryTest {
   @ExperimentalCoroutinesApi
   @Before
   fun setup() {
-    client = DisneyClient(service)
-    repository = MainRepository(client, posterDao)
+    repository = MainRepository(service, dataSource, posterDao)
   }
 
   @Test
