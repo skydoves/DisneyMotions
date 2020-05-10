@@ -30,7 +30,6 @@ import com.skydoves.disneymotions.network.ApiUtil.getCall
 import com.skydoves.disneymotions.network.DisneyService
 import com.skydoves.disneymotions.persistence.PosterDao
 import com.skydoves.disneymotions.utils.MockTestUtil.mockPosterList
-import com.skydoves.sandwich.ResponseDataSource
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
@@ -41,7 +40,6 @@ import org.junit.Test
 class MainRepositoryTest {
 
   private lateinit var repository: MainRepository
-  private val dataSource: ResponseDataSource<List<Poster>> = ResponseDataSource()
   private val service: DisneyService = mock()
   private val posterDao: PosterDao = mock()
 
@@ -55,7 +53,7 @@ class MainRepositoryTest {
   @ExperimentalCoroutinesApi
   @Before
   fun setup() {
-    repository = MainRepository(service, dataSource, posterDao)
+    repository = MainRepository(service, posterDao)
   }
 
   @Test

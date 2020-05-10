@@ -20,11 +20,11 @@ import androidx.lifecycle.MutableLiveData
 import com.skydoves.disneymotions.model.Poster
 import com.skydoves.disneymotions.network.DisneyService
 import com.skydoves.disneymotions.persistence.PosterDao
-import com.skydoves.sandwich.ResponseDataSource
 import com.skydoves.sandwich.message
 import com.skydoves.sandwich.onError
 import com.skydoves.sandwich.onException
 import com.skydoves.sandwich.onSuccess
+import com.skydoves.sandwich.request
 import com.skydoves.whatif.whatIfNotNull
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -32,7 +32,6 @@ import timber.log.Timber
 
 class MainRepository constructor(
   private val disneyService: DisneyService,
-  private val dataSource: ResponseDataSource<List<Poster>>,
   private val posterDao: PosterDao
 ) : Repository {
 
@@ -47,35 +46,28 @@ class MainRepository constructor(
     var posters = posterDao.getPosterList()
     if (posters.isEmpty()) {
       isLoading = true
-      dataSource
-        // retry fetching data 3 times with 5000 milli-seconds time interval when the request gets failure.
-        .retry(3, 5000L)
-        // combine network service to the data source.
-        .combine(disneyService.fetchDisneyPosterList()) { apiResponse ->
-          // handle the case when the API request gets a success response.
-          apiResponse.onSuccess {
-            data.whatIfNotNull {
-              posters = it
-              liveData.postValue(it)
-              posterDao.insertPosterList(it)
-            }
+      // request API network call asynchronously.
+      disneyService.fetchDisneyPosterList().request { apiResponse ->
+        // handle the case when the API request gets a success response.
+        apiResponse.onSuccess {
+          data.whatIfNotNull {
+            posters = it
+            liveData.postValue(it)
+            posterDao.insertPosterList(it)
           }
-            // handle the case when the API request gets a error response.
-            // e.g. internal server error.
-            .onError {
-              error(message())
-            }
-            // handle the case when the API request gets a exception response.
-            // e.g. network connection error.
-            .onException {
-              error(message())
-            }
-          isLoading = false
         }
-        // request API network call asynchronously.
-        // if the request is successful, the DataSource will hold the success data.
-        // in the next request after success, returns the cached API response data.
-        .request()
+          // handle the case when the API request gets a error response.
+          // e.g. internal server error.
+          .onError {
+            error(message())
+          }
+          // handle the case when the API request gets a exception response.
+          // e.g. network connection error.
+          .onException {
+            error(message())
+          }
+        isLoading = false
+      }
     }
     liveData.apply { postValue(posters) }
   }
