@@ -66,9 +66,9 @@ fun bindNavigation(view: ViewPager, navigationView: BottomNavigationView) {
 
   navigationView.setOnNavigationItemSelectedListener {
     when (it.itemId) {
-      R.id.action_one -> view.currentItem = 0
-      R.id.action_two -> view.currentItem = 1
-      R.id.action_three -> view.currentItem = 2
+      R.id.action_home -> view.currentItem = 0
+      R.id.action_library -> view.currentItem = 1
+      R.id.action_radio -> view.currentItem = 2
     }
     true
   }
