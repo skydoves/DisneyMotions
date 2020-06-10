@@ -15,6 +15,7 @@
   </data>
 
   <androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -30,6 +31,64 @@
       app:spanCount="2"
       app:toast="@{viewModel.toastLiveData}"
       tools:listitem="@layout/item_poster" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+      android:id="@+id/fab"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginEnd="24dp"
+      android:layout_marginBottom="24dp"
+      android:backgroundTint="@color/colorPrimary"
+      android:src="@drawable/ic_add"
+      app:borderWidth="0dp"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:tint="@color/white" />
+
+    <com.google.android.material.card.MaterialCardView
+      android:id="@+id/card"
+      android:layout_width="240dp"
+      android:layout_height="312dp"
+      android:layout_marginEnd="30dp"
+      android:layout_marginBottom="30dp"
+      android:visibility="gone"
+      app:cardBackgroundColor="@color/white"
+      app:cardCornerRadius="4dp"
+      app:cardElevation="8dp"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent">
+
+      <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background"
+        android:orientation="vertical">
+
+        <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="48dp"
+          android:background="@color/colorPrimary"
+          android:gravity="center">
+
+          <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_add"
+            android:gravity="center"
+            android:paddingStart="42dp"
+            android:paddingEnd="42dp"
+            android:text="compose new"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
+        </LinearLayout>
+
+      </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
   </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>
