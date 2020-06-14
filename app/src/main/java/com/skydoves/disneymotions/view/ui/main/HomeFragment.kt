@@ -56,14 +56,14 @@ class HomeFragment : DatabindingFragment() {
       TransitionManager.beginDelayedTransition(binding.container,
         getTransform(it, binding.card))
       binding.card.visible()
-      it.gone()
+      it.gone(true)
     }
 
     binding.card.setOnClickListener {
       TransitionManager.beginDelayedTransition(binding.container,
         getTransform(it, binding.fab))
       binding.fab.visible()
-      it.gone()
+      it.gone(true)
     }
   }
 

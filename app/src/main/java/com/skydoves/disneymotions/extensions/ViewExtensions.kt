@@ -24,6 +24,7 @@ fun View.visible() {
 }
 
 /** makes gone a view. */
-fun View.gone() {
-  visibility = View.GONE
+fun View.gone(shouldBeGone: Boolean) {
+  if (shouldBeGone) visibility = View.GONE
+  else visible()
 }

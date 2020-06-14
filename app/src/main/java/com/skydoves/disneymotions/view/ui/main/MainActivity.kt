@@ -21,6 +21,7 @@ import com.skydoves.disneymotions.R
 import com.skydoves.disneymotions.base.DatabindingActivity
 import com.skydoves.disneymotions.databinding.ActivityMainBinding
 import com.skydoves.disneymotions.extensions.applyExitMaterialTransform
+import org.koin.android.viewmodel.ext.android.getViewModel
 
 class MainActivity : DatabindingActivity() {
 
@@ -32,6 +33,7 @@ class MainActivity : DatabindingActivity() {
     binding.apply {
       pagerAdapter = MainPagerAdapter(supportFragmentManager)
       navigation = mainBottomNavigation
+      vm = getViewModel()
     }
   }
 }

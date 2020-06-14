@@ -16,6 +16,7 @@
 
 package com.skydoves.disneymotions.view.ui.main
 
+import androidx.databinding.ObservableBoolean
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.switchMap
@@ -31,6 +32,7 @@ class MainViewModel constructor(
   private var posterFetchingLiveData: MutableLiveData<Boolean> = MutableLiveData()
   val posterListLiveData: LiveData<List<Poster>>
 
+  val isLoading: ObservableBoolean = mainRepository.isLoading
   val toastLiveData: MutableLiveData<String> = MutableLiveData()
 
   init {

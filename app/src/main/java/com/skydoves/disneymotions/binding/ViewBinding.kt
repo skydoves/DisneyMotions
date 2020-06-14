@@ -49,6 +49,11 @@ fun bindPagerAdapter(view: ViewPager, adapter: PagerAdapter) {
   view.offscreenPageLimit = 3
 }
 
+@BindingAdapter("gone")
+fun bindGone(view: View, shouldBeGone: Boolean) {
+  view.gone(shouldBeGone)
+}
+
 @BindingAdapter("bindNavigation")
 fun bindNavigation(view: ViewPager, navigationView: BottomNavigationView) {
   view.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
@@ -95,7 +100,7 @@ fun bindTransformFab(view: View, fab: FloatingActionButton, container: Coordinat
     // removing/adding them from the hierarchy.
     fab.tag = View.GONE
     TransitionManager.beginDelayedTransition(container, getTransform(fab, view))
-    fab.gone()
+    fab.gone(true)
     view.visible()
   }
 
@@ -103,7 +108,7 @@ fun bindTransformFab(view: View, fab: FloatingActionButton, container: Coordinat
     fab.tag = View.VISIBLE
     TransitionManager.beginDelayedTransition(container, getTransform(view, fab))
     fab.visible()
-    view.gone()
+    view.gone(true)
   }
 }
 
