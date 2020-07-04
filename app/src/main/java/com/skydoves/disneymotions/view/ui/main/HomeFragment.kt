@@ -67,7 +67,7 @@ class HomeFragment : DatabindingFragment() {
     }
   }
 
-  internal fun getTransform(mStartView: View, mEndView: View): MaterialContainerTransform {
+  private fun getTransform(mStartView: View, mEndView: View): MaterialContainerTransform {
     return MaterialContainerTransform().apply {
       startView = mStartView
       endView = mEndView
