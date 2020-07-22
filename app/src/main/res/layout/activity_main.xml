@@ -18,7 +18,7 @@
 
     <variable
       name="navigation"
-      type="com.google.android.material.bottomnavigation.BottomNavigationView" />
+      type="com.skydoves.androidbottombar.AndroidBottomBarView" />
   </data>
 
   <androidx.constraintlayout.widget.ConstraintLayout
@@ -50,18 +50,22 @@
       app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
       app:pagerAdapter="@{pagerAdapter}" />
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
+    <com.skydoves.androidbottombar.AndroidBottomBarView
       android:id="@+id/main_bottom_navigation"
       android:layout_width="match_parent"
-      android:layout_height="52dp"
+      android:layout_height="64dp"
       android:background="@color/colorPrimary"
-      app:itemBackground="@color/colorPrimary"
-      app:itemIconTint="@color/white"
-      app:itemTextColor="@color/white"
+      app:bottomBar_duration="400"
+      app:bottomBar_flavor="icon"
+      app:bottomBar_indicator_color="@color/white_real"
+      app:bottomBar_indicator_height="4dp"
+      app:bottomBar_indicator_padding="9dp"
+      app:bottomBar_indicator_radius="12dp"
+      app:bottomBar_indicator_visible="true"
+      app:bottomBar_menuAnimation="overshoot"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:menu="@menu/menus" />
+      app:layout_constraintStart_toStartOf="parent" />
 
     <ProgressBar
       android:layout_width="wrap_content"

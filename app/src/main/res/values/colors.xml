@@ -11,11 +11,14 @@
   <color name="white_87">#ddffffff</color>
   <color name="white_93">#edf8f8f8</color>
   <color name="white">#ffffffff</color>
+  <color name="white_real">#ffffff</color>
   <color name="skyBlue">#57A8D8</color>
   <color name="yellow">#FBC02D</color>
   <color name="md_yellow_100">#FFD600</color>
   <color name="md_yellow_200">#FBC02D</color>
   <color name="md_amber_700">#FFA000</color>
+  <color name="md_red_900">#B71C1C</color>
+  <color name="md_red_A100">#FF8A80</color>
   <color name="md_orange_100">#FFA726</color>
   <color name="md_orange_200">#FF6D00</color>
   <color name="md_green_100">#81C784</color>

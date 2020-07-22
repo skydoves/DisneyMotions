@@ -27,10 +27,11 @@ import androidx.viewpager.widget.ViewPager
 import com.bumptech.glide.Glide
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.appbar.AppBarLayout.OnOffsetChangedListener
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.transition.platform.MaterialArcMotion
 import com.google.android.material.transition.platform.MaterialContainerTransform
+import com.skydoves.androidbottombar.AndroidBottomBarView
+import com.skydoves.androidbottombar.BottomMenuItem
 import com.skydoves.disneymotions.R
 import com.skydoves.disneymotions.extensions.gone
 import com.skydoves.disneymotions.extensions.visible
@@ -55,27 +56,30 @@ fun bindGone(view: View, shouldBeGone: Boolean) {
 }
 
 @BindingAdapter("bindNavigation")
-fun bindNavigation(view: ViewPager, navigationView: BottomNavigationView) {
-  view.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
-    override fun onPageScrollStateChanged(state: Int) = Unit
-    override fun onPageScrolled(
-      position: Int,
-      positionOffset: Float,
-      positionOffsetPixels: Int
-    ) = Unit
+fun bindNavigation(view: ViewPager, navigationView: AndroidBottomBarView) {
+  navigationView.addBottomMenuItems(mutableListOf(
+    BottomMenuItem(view.context)
+      .setTitle("Home")
+      .setIcon(R.drawable.ic_home)
+      .build(),
 
-    override fun onPageSelected(position: Int) {
-      navigationView.menu.getItem(position).isChecked = true
-    }
-  })
+    BottomMenuItem(view.context)
+      .setTitle("Tv")
+      .setIcon(R.drawable.ic_library)
+      .build(),
 
-  navigationView.setOnNavigationItemSelectedListener {
-    when (it.itemId) {
-      R.id.action_one -> view.currentItem = 0
-      R.id.action_two -> view.currentItem = 1
-      R.id.action_three -> view.currentItem = 2
-    }
-    true
+    BottomMenuItem(view.context)
+      .setTitle("Radio")
+      .setIcon(R.drawable.ic_radio)
+      .build()))
+
+  navigationView.setOnMenuItemSelectedListener { index, _, _ ->
+    navigationView.dismissBadge(index)
+    view.currentItem = index
+  }
+
+  navigationView.setOnBottomMenuInitializedListener {
+    navigationView.bindViewPager(view)
   }
 }
 
