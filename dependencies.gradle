@@ -5,8 +5,8 @@ ext.versions = [
     versionName            : '1.0.0',
 
     // gradle plugins
-    gradleBuildTool        : '4.0.0',
-    spotlessGradle         : '4.5.0',
+    gradleBuildTool        : '4.0.1',
+    spotlessGradle         : '4.5.1',
     versionPlugin          : '0.23.0',
 
     // kotlin
@@ -27,10 +27,10 @@ ext.versions = [
     // network
     retrofitVersion        : '2.9.0',
     okhttpVersion          : '4.7.2',
-    sandwichVersion        : '1.0.3',
+    sandwichVersion        : '1.0.4',
 
     // coroutines
-    coroutinesVersion      : '1.3.0',
+    coroutinesVersion      : '1.3.7',
 
     // glide
     glideVersion           : '4.11.0',

@@ -71,6 +71,7 @@ class HomeFragment : DatabindingFragment() {
     return MaterialContainerTransform().apply {
       startView = mStartView
       endView = mEndView
+      addTarget(mEndView)
       pathMotion = MaterialArcMotion()
       duration = 550
       scrimColor = Color.TRANSPARENT
