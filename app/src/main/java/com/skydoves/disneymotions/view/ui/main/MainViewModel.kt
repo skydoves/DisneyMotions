@@ -19,6 +19,7 @@ package com.skydoves.disneymotions.view.ui.main
 import androidx.databinding.ObservableBoolean
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.asLiveData
 import androidx.lifecycle.switchMap
 import com.skydoves.disneymotions.base.LiveCoroutinesViewModel
 import com.skydoves.disneymotions.model.Poster
@@ -41,6 +42,7 @@ class MainViewModel constructor(
     this.posterListLiveData = this.posterFetchingLiveData.switchMap {
       launchOnViewModelScope {
         this.mainRepository.loadDisneyPosters { this.toastLiveData.postValue(it) }
+          .asLiveData()
       }
     }
   }

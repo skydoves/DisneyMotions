@@ -17,11 +17,11 @@
 package com.skydoves.disneymotions.network
 
 import com.skydoves.disneymotions.model.Poster
-import retrofit2.Call
+import com.skydoves.sandwich.ApiResponse
 import retrofit2.http.GET
 
 interface DisneyService {
 
   @GET("DisneyPosters.json")
-  fun fetchDisneyPosterList(): Call<List<Poster>>
+  suspend fun fetchDisneyPosterList(): ApiResponse<List<Poster>>
 }

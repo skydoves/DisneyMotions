@@ -122,7 +122,7 @@ internal fun getTransform(mStartView: View, mEndView: View): MaterialContainerTr
     endView = mEndView
     addTarget(mEndView)
     pathMotion = MaterialArcMotion()
-    duration = 650
+    duration = 550
     scrimColor = Color.TRANSPARENT
   }
 }

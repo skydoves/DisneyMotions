@@ -17,18 +17,17 @@
 package com.skydoves.disneymotions.repository
 
 import androidx.databinding.ObservableBoolean
-import androidx.lifecycle.MutableLiveData
 import com.skydoves.disneymotions.model.Poster
 import com.skydoves.disneymotions.network.DisneyService
 import com.skydoves.disneymotions.persistence.PosterDao
 import com.skydoves.sandwich.message
 import com.skydoves.sandwich.onError
 import com.skydoves.sandwich.onException
-import com.skydoves.sandwich.onSuccess
-import com.skydoves.sandwich.request
+import com.skydoves.sandwich.suspendOnSuccess
 import com.skydoves.whatif.whatIfNotNull
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
 import timber.log.Timber
 
 class MainRepository constructor(
@@ -42,18 +41,17 @@ class MainRepository constructor(
     Timber.d("Injection MainRepository")
   }
 
-  suspend fun loadDisneyPosters(error: (String) -> Unit) = withContext(Dispatchers.IO) {
-    val liveData = MutableLiveData<List<Poster>>()
-    val posters = posterDao.getPosterList()
+  suspend fun loadDisneyPosters(error: (String) -> Unit) = flow {
+    val posters: List<Poster> = posterDao.getPosterList()
     if (posters.isEmpty()) {
       isLoading.set(true)
       // request API network call asynchronously.
-      disneyService.fetchDisneyPosterList().request { apiResponse ->
+      disneyService.fetchDisneyPosterList().apply {
         // handle the case when the API request gets a success response.
-        apiResponse.onSuccess {
+        this.suspendOnSuccess {
           data.whatIfNotNull {
-            liveData.postValue(it)
             posterDao.insertPosterList(it)
+            emit(it)
           }
         }
           // handle the case when the API request gets an error response.
@@ -68,7 +66,8 @@ class MainRepository constructor(
           }
         isLoading.set(false)
       }
+    } else {
+      emit(posters)
     }
-    liveData.apply { postValue(posters) }
-  }
+  }.flowOn(Dispatchers.IO)
 }
