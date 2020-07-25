@@ -19,18 +19,27 @@ package com.skydoves.disneymotions.viewmodel
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
+import com.skydoves.disneymotions.MainCoroutinesRule
 import com.skydoves.disneymotions.repository.DetailRepository
 import com.skydoves.disneymotions.utils.MockTestUtil.mockPoster
 import com.skydoves.disneymotions.view.ui.details.PosterDetailViewModel
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.runBlocking
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.core.Is.`is`
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 
+@ExperimentalCoroutinesApi
 class PosterDetailViewModelTest {
 
   private lateinit var viewModel: PosterDetailViewModel
   private val repository: DetailRepository = mock()
+
+  @ExperimentalCoroutinesApi
+  @get:Rule
+  var coroutinesRule = MainCoroutinesRule()
 
   @Before
   fun setup() {
@@ -38,7 +47,7 @@ class PosterDetailViewModelTest {
   }
 
   @Test
-  fun getPosterTest() {
+  fun getPosterTest() = runBlocking {
     val mockData = mockPoster()
     whenever(repository.getPosterById(0)).thenReturn(mockPoster())
 

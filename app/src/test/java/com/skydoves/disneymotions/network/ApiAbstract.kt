@@ -17,6 +17,7 @@
 package com.skydoves.disneymotions.network
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import com.skydoves.sandwich.coroutines.CoroutinesResponseCallAdapterFactory
 import java.io.IOException
 import java.nio.charset.StandardCharsets
 import okhttp3.mockwebserver.MockResponse
@@ -73,6 +74,7 @@ abstract class ApiAbstract<T> {
     return Retrofit.Builder()
       .baseUrl(mockWebServer.url("/"))
       .addConverterFactory(GsonConverterFactory.create())
+      .addCallAdapterFactory(CoroutinesResponseCallAdapterFactory())
       .build()
       .create(clazz)
   }

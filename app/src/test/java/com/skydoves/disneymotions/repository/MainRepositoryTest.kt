@@ -19,22 +19,24 @@
 package com.skydoves.disneymotions.repository
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import androidx.lifecycle.Observer
 import com.nhaarman.mockitokotlin2.atLeastOnce
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
 import com.skydoves.disneymotions.MainCoroutinesRule
-import com.skydoves.disneymotions.model.Poster
-import com.skydoves.disneymotions.network.ApiUtil.getCall
 import com.skydoves.disneymotions.network.DisneyService
 import com.skydoves.disneymotions.persistence.PosterDao
 import com.skydoves.disneymotions.utils.MockTestUtil.mockPosterList
+import com.skydoves.sandwich.ApiResponse
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.runBlocking
+import org.hamcrest.MatcherAssert.assertThat
+import org.hamcrest.core.Is.`is`
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import retrofit2.Response
 
 @ExperimentalCoroutinesApi
 class MainRepositoryTest {
@@ -60,20 +62,20 @@ class MainRepositoryTest {
   fun loadDisneyPostersTest() = runBlocking {
     val mockData = mockPosterList()
     whenever(posterDao.getPosterList()).thenReturn(emptyList())
-    whenever(service.fetchDisneyPosterList()).thenReturn(getCall(mockData))
+    whenever(service.fetchDisneyPosterList()).thenReturn(
+      ApiResponse.of { Response.success(mockData) })
 
-    val loadData = repository.loadDisneyPosters { }
+    repository.loadDisneyPosters(
+      error = {}
+    ).collect {
+      assertThat(it[0].id, `is`(0L))
+      assertThat(it[0].name, `is`("Frozen II"))
+      assertThat(it[0].release, `is`("2019"))
+      assertThat(it, `is`(mockData))
+    }
+
     verify(posterDao, atLeastOnce()).getPosterList()
     verify(service, atLeastOnce()).fetchDisneyPosterList()
-
-    val observer: Observer<List<Poster>> = mock()
-    loadData.observeForever(observer)
-
-    val updatedData = mockPosterList()
-    whenever(posterDao.getPosterList()).thenReturn(updatedData)
-
-    loadData.postValue(updatedData)
-    verify(observer).onChanged(updatedData)
-    loadData.removeObserver(observer)
+    verify(posterDao, atLeastOnce()).insertPosterList(mockData)
   }
 }

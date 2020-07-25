@@ -18,6 +18,7 @@ package com.skydoves.disneymotions.viewmodel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
+import androidx.lifecycle.asLiveData
 import com.nhaarman.mockitokotlin2.atLeastOnce
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
@@ -30,6 +31,7 @@ import com.skydoves.disneymotions.repository.MainRepository
 import com.skydoves.disneymotions.utils.MockTestUtil
 import com.skydoves.disneymotions.view.ui.main.MainViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Rule
@@ -62,11 +64,12 @@ class MainViewModelTest {
     val mockData = MockTestUtil.mockPosterList()
     whenever(posterDao.getPosterList()).thenReturn(mockData)
 
-    val fetchedData = mainRepository.loadDisneyPosters { }
+    val fetchedData = mainRepository.loadDisneyPosters { }.asLiveData()
     val observer: Observer<List<Poster>> = mock()
     fetchedData.observeForever(observer)
 
     viewModel.fetchDisneyPosterList()
+    delay(500L)
 
     verify(posterDao, atLeastOnce()).getPosterList()
     verify(observer).onChanged(mockData)

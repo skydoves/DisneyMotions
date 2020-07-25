@@ -16,23 +16,25 @@
 
 package com.skydoves.disneymotions.network
 
-import com.nhaarman.mockitokotlin2.mock
-import com.nhaarman.mockitokotlin2.whenever
-import com.skydoves.disneymotions.model.Poster
+import com.skydoves.disneymotions.MainCoroutinesRule
 import com.skydoves.sandwich.ApiResponse
-import com.skydoves.sandwich.request
 import java.io.IOException
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.runBlocking
 import org.hamcrest.CoreMatchers.`is`
-import org.hamcrest.CoreMatchers.instanceOf
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
-import retrofit2.Call
-import retrofit2.Response
 
+@ExperimentalCoroutinesApi
 class DisneyServiceTest : ApiAbstract<DisneyService>() {
 
   private lateinit var service: DisneyService
+
+  @ExperimentalCoroutinesApi
+  @get:Rule
+  var coroutinesRule = MainCoroutinesRule()
 
   @Before
   fun initService() {
@@ -41,31 +43,14 @@ class DisneyServiceTest : ApiAbstract<DisneyService>() {
 
   @Throws(IOException::class)
   @Test
-  fun fetchDisneyPosterListTest() {
+  fun fetchDisneyPosterListTest() = runBlocking {
     enqueueResponse("/DisneyPosters.json")
-
-    val responseBody = requireNotNull(service.fetchDisneyPosterList().execute().body())
+    val response = service.fetchDisneyPosterList()
+    val responseBody = requireNotNull((response as ApiResponse.Success).data)
     mockWebServer.takeRequest()
 
     assertThat(responseBody[0].id, `is`(0L))
     assertThat(responseBody[0].name, `is`("Frozen II"))
     assertThat(responseBody[0].release, `is`("2019"))
-
-    val call: Call<List<Poster>> = mock()
-    val onResult: (response: ApiResponse<List<Poster>>) -> Unit = {
-      assertThat(it, instanceOf(ApiResponse.Success::class.java))
-      val response: List<Poster> = requireNotNull((it as ApiResponse.Success).data)
-      assertThat(response[0].id, `is`(0L))
-      assertThat(response[0].name, `is`("Frozen II"))
-      assertThat(response[0].release, `is`("2019"))
-    }
-
-    whenever(call.request(onResult)).thenAnswer {
-      val response: (response: ApiResponse<List<Poster>>) -> Unit = it.getArgument(0)
-      response(ApiResponse.Success(Response.success(responseBody)))
-      call.request(onResult)
-    }
-
-    call.request(onResult)
   }
 }

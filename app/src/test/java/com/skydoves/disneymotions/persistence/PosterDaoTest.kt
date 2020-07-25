@@ -18,6 +18,7 @@ package com.skydoves.disneymotions.persistence
 
 import com.skydoves.disneymotions.utils.MockTestUtil.mockPoster
 import com.skydoves.disneymotions.utils.MockTestUtil.mockPosterList
+import kotlinx.coroutines.runBlocking
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.core.Is.`is`
 import org.junit.Before
@@ -38,7 +39,7 @@ class PosterDaoTest : LocalDatabase() {
   }
 
   @Test
-  fun insertAndLoadPosterListTest() {
+  fun insertAndLoadPosterListTest() = runBlocking {
     val mockDataList = mockPosterList()
     posterDao.insertPosterList(mockDataList)
 
