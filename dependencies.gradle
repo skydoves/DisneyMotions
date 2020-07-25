@@ -55,5 +55,5 @@ ext.versions = [
     androidxTestRules      : '1.2.0-alpha04',
     mockWebServerVersion   : '3.9.0',
     mockitoKotlinVersion   : '2.2.0',
-    mockitoInlineVersion   : '2.21.0'
+    mockitoInlineVersion   : '3.3.3'
 ]
