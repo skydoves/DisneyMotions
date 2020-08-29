@@ -17,19 +17,18 @@
 package com.skydoves.disneymotions.view.ui.main
 
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentPagerAdapter
+import androidx.fragment.app.FragmentActivity
+import androidx.viewpager2.adapter.FragmentStateAdapter
 
-class MainPagerAdapter(fm: FragmentManager) :
-  FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
+class MainPagerAdapter(fa: FragmentActivity) : FragmentStateAdapter(fa) {
 
-  override fun getItem(position: Int): Fragment {
+  override fun getItemCount() = 3
+
+  override fun createFragment(position: Int): Fragment {
     return when (position) {
       0 -> HomeFragment()
       1 -> LibraryFragment()
       else -> RadioFragment()
     }
   }
-
-  override fun getCount() = 3
 }

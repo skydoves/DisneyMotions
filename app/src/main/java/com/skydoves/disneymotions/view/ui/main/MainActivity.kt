@@ -31,7 +31,7 @@ class MainActivity : DatabindingActivity() {
     applyExitMaterialTransform()
     super.onCreate(savedInstanceState)
     binding.apply {
-      pagerAdapter = MainPagerAdapter(supportFragmentManager)
+      pagerAdapter = MainPagerAdapter(this@MainActivity)
       navigation = mainBottomNavigation
       vm = getViewModel()
     }

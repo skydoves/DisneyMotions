@@ -22,8 +22,8 @@ import android.view.View
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.databinding.BindingAdapter
-import androidx.viewpager.widget.PagerAdapter
-import androidx.viewpager.widget.ViewPager
+import androidx.viewpager2.adapter.FragmentStateAdapter
+import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.appbar.AppBarLayout.OnOffsetChangedListener
@@ -45,7 +45,7 @@ fun bindLoadImage(view: AppCompatImageView, url: String) {
 }
 
 @BindingAdapter("pagerAdapter")
-fun bindPagerAdapter(view: ViewPager, adapter: PagerAdapter) {
+fun bindPagerAdapter(view: ViewPager2, adapter: FragmentStateAdapter) {
   view.adapter = adapter
   view.offscreenPageLimit = 3
 }
@@ -56,7 +56,7 @@ fun bindGone(view: View, shouldBeGone: Boolean) {
 }
 
 @BindingAdapter("bindNavigation")
-fun bindNavigation(view: ViewPager, navigationView: AndroidBottomBarView) {
+fun bindNavigation(view: ViewPager2, navigationView: AndroidBottomBarView) {
   navigationView.addBottomMenuItems(mutableListOf(
     BottomMenuItem(view.context)
       .setTitle("Home")
@@ -79,7 +79,7 @@ fun bindNavigation(view: ViewPager, navigationView: AndroidBottomBarView) {
   }
 
   navigationView.setOnBottomMenuInitializedListener {
-    navigationView.bindViewPager(view)
+    navigationView.bindViewPager2(view)
   }
 }
 
