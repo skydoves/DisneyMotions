@@ -16,7 +16,6 @@
 
 package com.skydoves.disneymotions.repository
 
-import androidx.databinding.ObservableBoolean
 import com.skydoves.disneymotions.model.Poster
 import com.skydoves.disneymotions.network.DisneyService
 import com.skydoves.disneymotions.persistence.PosterDao
@@ -35,16 +34,16 @@ class MainRepository constructor(
   private val posterDao: PosterDao
 ) : Repository {
 
-  override var isLoading = ObservableBoolean(false)
-
   init {
     Timber.d("Injection MainRepository")
   }
 
-  suspend fun loadDisneyPosters(error: (String) -> Unit) = flow {
+  suspend fun loadDisneyPosters(
+    onSuccess: () -> Unit,
+    onError: (String) -> Unit
+  ) = flow {
     val posters: List<Poster> = posterDao.getPosterList()
     if (posters.isEmpty()) {
-      isLoading.set(true)
       // request API network call asynchronously.
       disneyService.fetchDisneyPosterList().apply {
         // handle the case when the API request gets a success response.
@@ -52,22 +51,23 @@ class MainRepository constructor(
           data.whatIfNotNull {
             posterDao.insertPosterList(it)
             emit(it)
+            onSuccess()
           }
         }
           // handle the case when the API request gets an error response.
           // e.g. internal server error.
           .onError {
-            error(message())
+            onError(message())
           }
           // handle the case when the API request gets an exception response.
           // e.g. network connection error.
           .onException {
-            error(message())
+            onError(message())
           }
-        isLoading.set(false)
       }
     } else {
       emit(posters)
+      onSuccess()
     }
   }.flowOn(Dispatchers.IO)
 }

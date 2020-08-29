@@ -16,14 +16,11 @@
 
 package com.skydoves.disneymotions.repository
 
-import androidx.databinding.ObservableBoolean
 import com.skydoves.disneymotions.persistence.PosterDao
 
 class DetailRepository constructor(
   private val posterDao: PosterDao
 ) : Repository {
-
-  override var isLoading = ObservableBoolean(false)
 
   fun getPosterById(id: Long) = posterDao.getPoster(id)
 }
