@@ -119,16 +119,19 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:ellipsize="end"
-                android:maxLines="15"
                 android:maxEms="20"
+                android:maxLines="15"
                 android:text="@{poster.plot}"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
                 android:textColor="@color/white_87"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/detail_plot_title"
                 tools:text="Zootopia" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
+
           </com.google.android.material.card.MaterialCardView>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <com.google.android.material.appbar.MaterialToolbar
@@ -140,7 +143,9 @@
           app:layout_constraintTop_toTopOf="parent"
           app:simpleToolbarTitle="@{poster.name}"
           app:simpleToolbarWithHome="@{activity}" />
+
       </com.google.android.material.appbar.CollapsingToolbarLayout>
+
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.core.widget.NestedScrollView

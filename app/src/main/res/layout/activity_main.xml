@@ -37,6 +37,7 @@
       <include
         android:id="@+id/main_toolbar"
         layout="@layout/toolbar_home" />
+
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.viewpager2.widget.ViewPager2

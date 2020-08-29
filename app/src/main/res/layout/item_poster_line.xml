@@ -8,6 +8,7 @@
     <variable
       name="poster"
       type="com.skydoves.disneymotions.model.Poster" />
+
   </data>
 
   <com.google.android.material.card.MaterialCardView
