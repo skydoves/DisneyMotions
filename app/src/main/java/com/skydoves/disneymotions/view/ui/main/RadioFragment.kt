@@ -24,7 +24,7 @@ import com.skydoves.disneymotions.R
 import com.skydoves.disneymotions.base.DatabindingFragment
 import com.skydoves.disneymotions.databinding.FragmentRadioBinding
 import com.skydoves.disneymotions.view.adapter.PosterCircleAdapter
-import org.koin.android.viewmodel.ext.android.getViewModel
+import org.koin.android.viewmodel.ext.android.getSharedViewModel
 
 class RadioFragment : DatabindingFragment() {
 
@@ -34,7 +34,7 @@ class RadioFragment : DatabindingFragment() {
     savedInstanceState: Bundle?
   ): View? {
     return binding<FragmentRadioBinding>(inflater, R.layout.fragment_radio, container).apply {
-      viewModel = getViewModel<MainViewModel>().apply { fetchDisneyPosterList() }
+      viewModel = getSharedViewModel<MainViewModel>().apply { fetchDisneyPosterList() }
       lifecycleOwner = this@RadioFragment
       adapter = PosterCircleAdapter()
     }.root

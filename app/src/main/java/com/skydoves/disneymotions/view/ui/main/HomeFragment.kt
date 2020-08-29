@@ -30,7 +30,7 @@ import com.skydoves.disneymotions.databinding.FragmentHomeBinding
 import com.skydoves.disneymotions.extensions.gone
 import com.skydoves.disneymotions.extensions.visible
 import com.skydoves.disneymotions.view.adapter.PosterAdapter
-import org.koin.android.viewmodel.ext.android.getViewModel
+import org.koin.android.viewmodel.ext.android.getSharedViewModel
 
 class HomeFragment : DatabindingFragment() {
 
@@ -42,7 +42,7 @@ class HomeFragment : DatabindingFragment() {
     savedInstanceState: Bundle?
   ): View? {
     binding = binding<FragmentHomeBinding>(inflater, R.layout.fragment_home, container).apply {
-      viewModel = getViewModel<MainViewModel>().apply { fetchDisneyPosterList() }
+      viewModel = getSharedViewModel<MainViewModel>().apply { fetchDisneyPosterList() }
       lifecycleOwner = this@HomeFragment
       adapter = PosterAdapter()
     }

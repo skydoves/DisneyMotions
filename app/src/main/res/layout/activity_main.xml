@@ -68,9 +68,10 @@
       app:layout_constraintStart_toStartOf="parent" />
 
     <ProgressBar
+      android:id="@+id/progress"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      app:gone="@{!vm.isLoading()}"
+      app:gone="@{!vm.loading}"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"

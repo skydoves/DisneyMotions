@@ -66,7 +66,8 @@ class MainRepositoryTest {
       ApiResponse.of { Response.success(mockData) })
 
     repository.loadDisneyPosters(
-      error = {}
+      onSuccess = {},
+      onError = {}
     ).collect {
       assertThat(it[0].id, `is`(0L))
       assertThat(it[0].name, `is`("Frozen II"))

@@ -24,7 +24,7 @@ import com.skydoves.disneymotions.R
 import com.skydoves.disneymotions.base.DatabindingFragment
 import com.skydoves.disneymotions.databinding.FragmentLibraryBinding
 import com.skydoves.disneymotions.view.adapter.PosterLineAdapter
-import org.koin.android.viewmodel.ext.android.getViewModel
+import org.koin.android.viewmodel.ext.android.getSharedViewModel
 
 class LibraryFragment : DatabindingFragment() {
 
@@ -34,7 +34,7 @@ class LibraryFragment : DatabindingFragment() {
     savedInstanceState: Bundle?
   ): View? {
     return binding<FragmentLibraryBinding>(inflater, R.layout.fragment_library, container).apply {
-      viewModel = getViewModel<MainViewModel>().apply { fetchDisneyPosterList() }
+      viewModel = getSharedViewModel<MainViewModel>().apply { fetchDisneyPosterList() }
       lifecycleOwner = this@LibraryFragment
       adapter = PosterLineAdapter()
     }.root
