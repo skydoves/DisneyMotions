@@ -43,7 +43,7 @@ class HomeFragment : DatabindingFragment() {
   ): View? {
     binding = binding<FragmentHomeBinding>(inflater, R.layout.fragment_home, container).apply {
       viewModel = getSharedViewModel<MainViewModel>().apply { fetchDisneyPosterList() }
-      lifecycleOwner = this@HomeFragment
+      lifecycleOwner = viewLifecycleOwner
       adapter = PosterAdapter()
     }
     return binding.root

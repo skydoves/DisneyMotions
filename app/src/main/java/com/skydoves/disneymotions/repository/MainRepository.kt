@@ -16,6 +16,7 @@
 
 package com.skydoves.disneymotions.repository
 
+import androidx.annotation.WorkerThread
 import com.skydoves.disneymotions.model.Poster
 import com.skydoves.disneymotions.network.DisneyService
 import com.skydoves.disneymotions.persistence.PosterDao
@@ -38,6 +39,7 @@ class MainRepository constructor(
     Timber.d("Injection MainRepository")
   }
 
+  @WorkerThread
   suspend fun loadDisneyPosters(
     onSuccess: () -> Unit,
     onError: (String) -> Unit
