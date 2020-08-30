@@ -53,15 +53,19 @@ class HomeFragment : DatabindingFragment() {
     super.onViewCreated(view, savedInstanceState)
 
     binding.fab.setOnClickListener {
-      TransitionManager.beginDelayedTransition(binding.container,
-        getTransform(it, binding.card))
+      TransitionManager.beginDelayedTransition(
+        binding.container,
+        getTransform(it, binding.card)
+      )
       binding.card.visible()
       it.gone(true)
     }
 
     binding.card.setOnClickListener {
-      TransitionManager.beginDelayedTransition(binding.container,
-        getTransform(it, binding.fab))
+      TransitionManager.beginDelayedTransition(
+        binding.container,
+        getTransform(it, binding.fab)
+      )
       binding.fab.visible()
       it.gone(true)
     }

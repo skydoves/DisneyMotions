@@ -60,9 +60,13 @@ class PosterDetailActivity : DatabindingActivity() {
       if (context is Activity) {
         val intent = Intent(context, PosterDetailActivity::class.java)
         intent.putExtra(
-          posterKey, poster.id)
-        val options = ActivityOptions.makeSceneTransitionAnimation(context,
-          startView, poster.name
+          posterKey,
+          poster.id
+        )
+        val options = ActivityOptions.makeSceneTransitionAnimation(
+          context,
+          startView,
+          poster.name
         )
         context.startActivity(intent, options.toBundle())
       }

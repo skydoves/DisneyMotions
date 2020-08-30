@@ -57,21 +57,24 @@ fun bindGone(view: View, shouldBeGone: Boolean) {
 
 @BindingAdapter("bindNavigation")
 fun bindNavigation(view: ViewPager2, navigationView: AndroidBottomBarView) {
-  navigationView.addBottomMenuItems(mutableListOf(
-    BottomMenuItem(view.context)
-      .setTitle("Home")
-      .setIcon(R.drawable.ic_home)
-      .build(),
+  navigationView.addBottomMenuItems(
+    mutableListOf(
+      BottomMenuItem(view.context)
+        .setTitle("Home")
+        .setIcon(R.drawable.ic_home)
+        .build(),
 
-    BottomMenuItem(view.context)
-      .setTitle("Tv")
-      .setIcon(R.drawable.ic_library)
-      .build(),
+      BottomMenuItem(view.context)
+        .setTitle("Tv")
+        .setIcon(R.drawable.ic_library)
+        .build(),
 
-    BottomMenuItem(view.context)
-      .setTitle("Radio")
-      .setIcon(R.drawable.ic_radio)
-      .build()))
+      BottomMenuItem(view.context)
+        .setTitle("Radio")
+        .setIcon(R.drawable.ic_radio)
+        .build()
+    )
+  )
 
   navigationView.setOnMenuItemSelectedListener { index, _, _ ->
     navigationView.dismissBadge(index)
@@ -88,13 +91,15 @@ fun bindAppBarLayoutWithFab(appBarLayout: AppBarLayout, fab: FloatingActionButto
   appBarLayout.addOnOffsetChangedListener(
     OnOffsetChangedListener { appBarLayout1: AppBarLayout, verticalOffset: Int ->
       val verticalOffsetPercentage = abs(
-        verticalOffset).toFloat() / appBarLayout1.totalScrollRange.toFloat()
+        verticalOffset
+      ).toFloat() / appBarLayout1.totalScrollRange.toFloat()
       if (verticalOffsetPercentage > 0.4f && fab.isOrWillBeShown) {
         fab.hide()
       } else if (verticalOffsetPercentage <= 0.4f && fab.isOrWillBeHidden && fab.tag != View.GONE) {
         fab.show()
       }
-    })
+    }
+  )
 }
 
 @BindingAdapter("transformFab", "transformContainer")

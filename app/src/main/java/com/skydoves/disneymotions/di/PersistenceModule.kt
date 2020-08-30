@@ -26,8 +26,11 @@ val persistenceModule = module {
 
   single {
     Room
-      .databaseBuilder(androidApplication(), AppDatabase::class.java,
-        androidApplication().getString(R.string.database))
+      .databaseBuilder(
+        androidApplication(),
+        AppDatabase::class.java,
+        androidApplication().getString(R.string.database)
+      )
       .allowMainThreadQueries()
       .fallbackToDestructiveMigration()
       .build()

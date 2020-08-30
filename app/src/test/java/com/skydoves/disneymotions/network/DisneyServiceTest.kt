@@ -18,7 +18,6 @@ package com.skydoves.disneymotions.network
 
 import com.skydoves.disneymotions.MainCoroutinesRule
 import com.skydoves.sandwich.ApiResponse
-import java.io.IOException
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import org.hamcrest.CoreMatchers.`is`
@@ -26,6 +25,7 @@ import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import java.io.IOException
 
 @ExperimentalCoroutinesApi
 class DisneyServiceTest : ApiAbstract<DisneyService>() {

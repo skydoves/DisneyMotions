@@ -63,7 +63,8 @@ class MainRepositoryTest {
     val mockData = mockPosterList()
     whenever(posterDao.getPosterList()).thenReturn(emptyList())
     whenever(service.fetchDisneyPosterList()).thenReturn(
-      ApiResponse.of { Response.success(mockData) })
+      ApiResponse.of { Response.success(mockData) }
+    )
 
     repository.loadDisneyPosters(
       onSuccess = {},
