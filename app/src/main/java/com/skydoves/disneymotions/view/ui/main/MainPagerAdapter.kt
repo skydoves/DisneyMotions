@@ -22,13 +22,21 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 
 class MainPagerAdapter(fa: FragmentActivity) : FragmentStateAdapter(fa) {
 
-  override fun getItemCount() = 3
+  private val fragmentsCreators: Map<Int, () -> Fragment> = mapOf(
+    HOME to { HomeFragment() },
+    LIBRARY to { LibraryFragment() },
+    RADIO to { RadioFragment() }
+  )
 
   override fun createFragment(position: Int): Fragment {
-    return when (position) {
-      0 -> HomeFragment()
-      1 -> LibraryFragment()
-      else -> RadioFragment()
-    }
+    return fragmentsCreators[position]?.invoke() ?: throw IndexOutOfBoundsException()
+  }
+
+  override fun getItemCount() = fragmentsCreators.size
+
+  companion object {
+    private const val HOME = 0
+    private const val LIBRARY = 1
+    private const val RADIO = 2
   }
 }
