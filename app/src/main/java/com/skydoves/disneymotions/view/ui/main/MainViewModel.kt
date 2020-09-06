@@ -17,7 +17,6 @@
 package com.skydoves.disneymotions.view.ui.main
 
 import androidx.annotation.MainThread
-import androidx.databinding.ObservableBoolean
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.asLiveData
@@ -34,18 +33,21 @@ class MainViewModel constructor(
   private var posterFetchingLiveData: MutableLiveData<Boolean> = MutableLiveData()
   val posterListLiveData: LiveData<List<Poster>>
 
-  val isLoading: ObservableBoolean = ObservableBoolean(false)
-  val toastLiveData: MutableLiveData<String> = MutableLiveData()
+  private val _isLoading: MutableLiveData<Boolean> = MutableLiveData(false)
+  val isLoading: LiveData<Boolean> get() = _isLoading
+
+  private val _toastLiveData: MutableLiveData<String> = MutableLiveData()
+  val toastLiveData: LiveData<String> get() = _toastLiveData
 
   init {
     Timber.d("injection MainViewModel")
 
     posterListLiveData = posterFetchingLiveData.switchMap {
-      isLoading.set(true)
+      _isLoading.postValue(true)
       launchOnViewModelScope {
         this.mainRepository.loadDisneyPosters(
-          onSuccess = { isLoading.set(false) },
-          onError = { toastLiveData.postValue(it) }
+          onSuccess = { _isLoading.postValue(false) },
+          onError = { _toastLiveData.postValue(it) }
         ).asLiveData()
       }
     }

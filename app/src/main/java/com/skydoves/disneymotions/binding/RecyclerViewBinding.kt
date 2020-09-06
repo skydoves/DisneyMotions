@@ -18,14 +18,12 @@ package com.skydoves.disneymotions.binding
 
 import android.widget.Toast
 import androidx.databinding.BindingAdapter
-import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.skydoves.baserecyclerviewadapter.BaseAdapter
 import com.skydoves.disneymotions.model.Poster
 import com.skydoves.disneymotions.view.adapter.PosterAdapter
 import com.skydoves.disneymotions.view.adapter.PosterCircleAdapter
 import com.skydoves.disneymotions.view.adapter.PosterLineAdapter
-import com.skydoves.whatif.whatIfNotNull
 import com.skydoves.whatif.whatIfNotNullOrEmpty
 
 @BindingAdapter("adapter")
@@ -34,8 +32,8 @@ fun bindAdapter(view: RecyclerView, baseAdapter: BaseAdapter) {
 }
 
 @BindingAdapter("toast")
-fun bindToast(view: RecyclerView, text: LiveData<String>) {
-  text.value.whatIfNotNull {
+fun bindToast(view: RecyclerView, text: String?) {
+  text.whatIfNotNullOrEmpty {
     Toast.makeText(view.context, it, Toast.LENGTH_SHORT).show()
   }
 }

@@ -51,8 +51,12 @@ fun bindPagerAdapter(view: ViewPager2, adapter: FragmentStateAdapter) {
 }
 
 @BindingAdapter("gone")
-fun bindGone(view: View, shouldBeGone: Boolean) {
-  view.gone(shouldBeGone)
+fun bindGone(view: View, shouldBeGone: Boolean?) {
+  if (shouldBeGone == true) {
+    view.gone(true)
+  } else {
+    view.gone(false)
+  }
 }
 
 @BindingAdapter("bindNavigation")
