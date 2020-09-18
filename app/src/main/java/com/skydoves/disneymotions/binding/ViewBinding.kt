@@ -66,16 +66,19 @@ fun bindNavigation(view: ViewPager2, navigationView: AndroidBottomBarView) {
       BottomMenuItem(view.context)
         .setTitle("Home")
         .setIcon(R.drawable.ic_home)
+        .setIconSize(24)
         .build(),
 
       BottomMenuItem(view.context)
         .setTitle("Tv")
         .setIcon(R.drawable.ic_library)
+        .setIconSize(24)
         .build(),
 
       BottomMenuItem(view.context)
         .setTitle("Radio")
         .setIcon(R.drawable.ic_radio)
+        .setIconSize(24)
         .build()
     )
   )
