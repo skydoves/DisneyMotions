@@ -16,7 +16,7 @@ The motion system is included in the 1.2.0-alpha05 released material version.
 </p>
 
 ## Download
-Go to the [Releases](https://github.com/skydoves/DisneyMotions/releases) to download the lastest APK.
+Go to the [Releases](https://github.com/skydoves/DisneyMotions/releases) to download the latest APK.
 
 ## Screenshots
 <p align="center">
