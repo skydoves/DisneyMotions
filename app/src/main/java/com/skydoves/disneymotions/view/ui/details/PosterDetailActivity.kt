@@ -27,17 +27,18 @@ import com.skydoves.disneymotions.R
 import com.skydoves.disneymotions.base.DatabindingActivity
 import com.skydoves.disneymotions.databinding.ActivityPosterDetailBinding
 import com.skydoves.disneymotions.extensions.applyMaterialTransform
+import com.skydoves.disneymotions.extensions.extraLong
 import com.skydoves.disneymotions.model.Poster
 import org.koin.android.viewmodel.ext.android.getViewModel
 
 class PosterDetailActivity : DatabindingActivity() {
 
   private val binding: ActivityPosterDetailBinding by binding(R.layout.activity_poster_detail)
+  private val posterId: Long by extraLong(posterKey)
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    val poster =
-      getViewModel<PosterDetailViewModel>().getPoster(intent.getLongExtra(posterKey, 0))
+    val poster = getViewModel<PosterDetailViewModel>().getPoster(posterId)
     applyMaterialTransform(poster.name)
     binding.apply {
       this.poster = poster

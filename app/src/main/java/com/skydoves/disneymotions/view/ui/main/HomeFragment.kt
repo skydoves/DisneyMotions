@@ -41,12 +41,12 @@ class HomeFragment : DatabindingFragment() {
     container: ViewGroup?,
     savedInstanceState: Bundle?
   ): View? {
-    binding = binding<FragmentHomeBinding>(inflater, R.layout.fragment_home, container).apply {
+    return binding<FragmentHomeBinding>(inflater, R.layout.fragment_home, container).apply {
       viewModel = getSharedViewModel<MainViewModel>().apply { fetchDisneyPosterList() }
       lifecycleOwner = viewLifecycleOwner
       adapter = PosterAdapter()
-    }
-    return binding.root
+      this@HomeFragment.binding = this
+    }.root
   }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
