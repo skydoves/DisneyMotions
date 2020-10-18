@@ -34,4 +34,3 @@ private fun AppCompatActivity.simpleToolbarWithHome(toolbar: MaterialToolbar, ti
     title = title_
   }
 }
-

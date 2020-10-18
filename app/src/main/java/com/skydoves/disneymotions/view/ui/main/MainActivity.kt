@@ -32,6 +32,7 @@ class MainActivity : DatabindingActivity() {
     super.onCreate(savedInstanceState)
     binding.apply {
       pagerAdapter = MainPagerAdapter(this@MainActivity)
+      lifecycleOwner = this@MainActivity
       navigation = mainBottomNavigation
       vm = getViewModel()
     }

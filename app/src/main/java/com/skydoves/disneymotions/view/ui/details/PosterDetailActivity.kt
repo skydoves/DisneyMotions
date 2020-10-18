@@ -41,6 +41,7 @@ class PosterDetailActivity : DatabindingActivity() {
     applyMaterialTransform(poster.name)
     binding.apply {
       this.poster = poster
+      lifecycleOwner = this@PosterDetailActivity
       activity = this@PosterDetailActivity
       container = detailContainer
       fab = fabMore
@@ -56,6 +57,7 @@ class PosterDetailActivity : DatabindingActivity() {
 
   companion object {
     private const val posterKey = "posterKey"
+
     fun startActivityModel(context: Context?, startView: View, poster: Poster) {
       if (context is Activity) {
         val intent = Intent(context, PosterDetailActivity::class.java)

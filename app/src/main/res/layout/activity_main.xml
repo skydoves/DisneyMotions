@@ -59,7 +59,7 @@
       app:bottomBar_flavor="icon"
       app:bottomBar_indicator_color="@color/white_real"
       app:bottomBar_indicator_height="4dp"
-      app:bottomBar_indicator_padding="9dp"
+      app:bottomBar_indicator_padding="14dp"
       app:bottomBar_indicator_radius="12dp"
       app:bottomBar_indicator_visible="true"
       app:bottomBar_menuAnimation="overshoot"
