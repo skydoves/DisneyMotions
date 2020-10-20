@@ -16,9 +16,6 @@
       name="viewPager"
       type="androidx.viewpager.widget.ViewPager" />
 
-    <variable
-      name="navigation"
-      type="com.skydoves.androidbottombar.AndroidBottomBarView" />
   </data>
 
   <androidx.constraintlayout.widget.ConstraintLayout
@@ -44,10 +41,10 @@
       android:id="@+id/main_viewpager"
       android:layout_width="match_parent"
       android:layout_height="0dp"
-      app:bindNavigation="@{navigation}"
+      app:bindNavigation="@{mainBottomNavigation}"
       app:layout_constraintBottom_toTopOf="@id/main_bottom_navigation"
       app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
+      app:layout_constraintTop_toBottomOf="@id/appBarLayout"
       app:pagerAdapter="@{pagerAdapter}" />
 
     <com.skydoves.androidbottombar.AndroidBottomBarView
