@@ -60,5 +60,5 @@ fun AppCompatActivity.applyMaterialTransform(transitionName: String) {
 
 /** returns a long value from intent's extra data.  */
 fun ComponentActivity.extraLong(key: String): Lazy<Long> {
-  return lazy { requireNotNull(intent.getLongExtra(key, 0).takeIf { it != 0L }) }
+  return lazy { requireNotNull(intent.getLongExtra(key, -1).takeIf { it != -1L }) }
 }
