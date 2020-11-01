@@ -42,7 +42,7 @@ ext.versions = [
     whatIfVersion          : '1.0.7',
 
     // bundler
-    bundlerVersion         : '1.0.0',
+    bundlerVersion         : '1.0.1',
 
     // androidBottomBar
     androidBottomBarVersion: '1.0.2',

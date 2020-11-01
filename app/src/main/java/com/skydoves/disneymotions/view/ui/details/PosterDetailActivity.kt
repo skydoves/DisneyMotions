@@ -23,7 +23,7 @@ import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
 import com.skydoves.bundler.bundle
-import com.skydoves.bundler.intent
+import com.skydoves.bundler.intentOf
 import com.skydoves.disneymotions.R
 import com.skydoves.disneymotions.base.DatabindingActivity
 import com.skydoves.disneymotions.databinding.ActivityPosterDetailBinding
@@ -61,14 +61,14 @@ class PosterDetailActivity : DatabindingActivity() {
 
     fun startActivity(context: Context?, startView: View, poster: Poster) {
       if (context is Activity) {
-        context.intent(PosterDetailActivity::class) {
+        context.intentOf<PosterDetailActivity> {
           putExtra(EXTRA_POSTER_ID, poster.id)
           val options = ActivityOptions.makeSceneTransitionAnimation(
             context,
             startView,
             poster.name
           )
-          context.startActivity(intent, options.toBundle())
+          startActivity(context, options.toBundle())
         }
       }
     }
