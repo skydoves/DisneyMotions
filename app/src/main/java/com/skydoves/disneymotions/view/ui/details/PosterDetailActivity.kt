@@ -19,22 +19,22 @@ package com.skydoves.disneymotions.view.ui.details
 import android.app.Activity
 import android.app.ActivityOptions
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
+import com.skydoves.bundler.bundle
+import com.skydoves.bundler.intent
 import com.skydoves.disneymotions.R
 import com.skydoves.disneymotions.base.DatabindingActivity
 import com.skydoves.disneymotions.databinding.ActivityPosterDetailBinding
 import com.skydoves.disneymotions.extensions.applyMaterialTransform
-import com.skydoves.disneymotions.extensions.extraLong
 import com.skydoves.disneymotions.model.Poster
 import org.koin.android.viewmodel.ext.android.getViewModel
 
 class PosterDetailActivity : DatabindingActivity() {
 
   private val binding: ActivityPosterDetailBinding by binding(R.layout.activity_poster_detail)
-  private val posterId: Long by extraLong(posterKey)
+  private val posterId: Long by bundle(EXTRA_POSTER_ID, -1)
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -57,21 +57,19 @@ class PosterDetailActivity : DatabindingActivity() {
   }
 
   companion object {
-    private const val posterKey = "posterKey"
+    private const val EXTRA_POSTER_ID = "EXTRA_POSTER_ID"
 
-    fun startActivityModel(context: Context?, startView: View, poster: Poster) {
+    fun startActivity(context: Context?, startView: View, poster: Poster) {
       if (context is Activity) {
-        val intent = Intent(context, PosterDetailActivity::class.java)
-        intent.putExtra(
-          posterKey,
-          poster.id
-        )
-        val options = ActivityOptions.makeSceneTransitionAnimation(
-          context,
-          startView,
-          poster.name
-        )
-        context.startActivity(intent, options.toBundle())
+        context.intent(PosterDetailActivity::class) {
+          putExtra(EXTRA_POSTER_ID, poster.id)
+          val options = ActivityOptions.makeSceneTransitionAnimation(
+            context,
+            startView,
+            poster.name
+          )
+          context.startActivity(intent, options.toBundle())
+        }
       }
     }
   }

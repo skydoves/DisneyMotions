@@ -84,6 +84,9 @@ dependencies {
     // whatIf
     implementation "com.github.skydoves:whatif:$versions.whatIfVersion"
 
+    // bundler
+    implementation "com.github.skydoves:bundler:$versions.bundlerVersion"
+
     // android bottom navigation
     implementation "com.github.skydoves:androidbottombar:$versions.androidBottomBarVersion"
 

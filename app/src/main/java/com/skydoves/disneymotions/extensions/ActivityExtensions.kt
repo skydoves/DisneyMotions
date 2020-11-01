@@ -18,7 +18,6 @@ package com.skydoves.disneymotions.extensions
 
 import android.content.Context
 import android.view.Window
-import androidx.activity.ComponentActivity
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
@@ -56,9 +55,4 @@ fun AppCompatActivity.applyMaterialTransform(transitionName: String) {
   setEnterSharedElementCallback(MaterialContainerTransformSharedElementCallback())
   window.sharedElementEnterTransition = getContentTransform(this)
   window.sharedElementReturnTransition = getContentTransform(this)
-}
-
-/** returns a long value from intent's extra data.  */
-fun ComponentActivity.extraLong(key: String): Lazy<Long> {
-  return lazy { requireNotNull(intent.getLongExtra(key, -1).takeIf { it != -1L }) }
 }
