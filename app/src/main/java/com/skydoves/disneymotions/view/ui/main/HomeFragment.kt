@@ -42,7 +42,7 @@ class HomeFragment : DatabindingFragment() {
     savedInstanceState: Bundle?
   ): View? {
     return binding<FragmentHomeBinding>(inflater, R.layout.fragment_home, container).apply {
-      viewModel = getSharedViewModel<MainViewModel>().apply { fetchDisneyPosterList() }
+      viewModel = getSharedViewModel()
       lifecycleOwner = viewLifecycleOwner
       adapter = PosterAdapter()
       this@HomeFragment.binding = this

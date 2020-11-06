@@ -16,7 +16,6 @@
 
 package com.skydoves.disneymotions.view.ui.main
 
-import androidx.annotation.MainThread
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.asLiveData
@@ -30,7 +29,7 @@ class MainViewModel constructor(
   private val mainRepository: MainRepository
 ) : LiveCoroutinesViewModel() {
 
-  private var posterFetchingLiveData: MutableLiveData<Boolean> = MutableLiveData()
+  private var posterFetchingLiveData: MutableLiveData<Boolean> = MutableLiveData(true)
   val posterListLiveData: LiveData<List<Poster>>
 
   private val _isLoading: MutableLiveData<Boolean> = MutableLiveData(false)
@@ -51,10 +50,5 @@ class MainViewModel constructor(
         ).asLiveData()
       }
     }
-  }
-
-  @MainThread
-  fun fetchDisneyPosterList() {
-    posterFetchingLiveData.value = true
   }
 }

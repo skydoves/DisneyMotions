@@ -72,7 +72,6 @@ class MainViewModelTest {
     val observer: Observer<List<Poster>> = mock()
     fetchedData.observeForever(observer)
 
-    viewModel.fetchDisneyPosterList()
     delay(500L)
 
     verify(posterDao, atLeastOnce()).getPosterList()
