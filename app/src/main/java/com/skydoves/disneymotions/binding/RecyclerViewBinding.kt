@@ -26,35 +26,42 @@ import com.skydoves.disneymotions.view.adapter.PosterCircleAdapter
 import com.skydoves.disneymotions.view.adapter.PosterLineAdapter
 import com.skydoves.whatif.whatIfNotNullOrEmpty
 
-@BindingAdapter("adapter")
-fun bindAdapter(view: RecyclerView, baseAdapter: BaseAdapter) {
-  view.adapter = baseAdapter
-}
-
-@BindingAdapter("toast")
-fun bindToast(view: RecyclerView, text: String?) {
-  text.whatIfNotNullOrEmpty {
-    Toast.makeText(view.context, it, Toast.LENGTH_SHORT).show()
+object RecyclerViewBinding {
+  @JvmStatic
+  @BindingAdapter("adapter")
+  fun bindAdapter(view: RecyclerView, baseAdapter: BaseAdapter) {
+    view.adapter = baseAdapter
   }
-}
 
-@BindingAdapter("adapterPosterList")
-fun bindAdapterPosterList(view: RecyclerView, posters: List<Poster>?) {
-  posters.whatIfNotNullOrEmpty {
-    (view.adapter as? PosterAdapter)?.addPosterList(it)
+  @JvmStatic
+  @BindingAdapter("toast")
+  fun bindToast(view: RecyclerView, text: String?) {
+    text.whatIfNotNullOrEmpty {
+      Toast.makeText(view.context, it, Toast.LENGTH_SHORT).show()
+    }
   }
-}
 
-@BindingAdapter("adapterPosterLineList")
-fun bindAdapterPosterLineList(view: RecyclerView, posters: List<Poster>?) {
-  posters.whatIfNotNullOrEmpty {
-    (view.adapter as? PosterLineAdapter)?.addPosterList(it)
+  @JvmStatic
+  @BindingAdapter("adapterPosterList")
+  fun bindAdapterPosterList(view: RecyclerView, posters: List<Poster>?) {
+    posters.whatIfNotNullOrEmpty {
+      (view.adapter as? PosterAdapter)?.addPosterList(it)
+    }
   }
-}
 
-@BindingAdapter("adapterPosterCircleList")
-fun bindAdapterPosterCircleList(view: RecyclerView, posters: List<Poster>?) {
-  posters.whatIfNotNullOrEmpty {
-    (view.adapter as? PosterCircleAdapter)?.addPosterList(it)
+  @JvmStatic
+  @BindingAdapter("adapterPosterLineList")
+  fun bindAdapterPosterLineList(view: RecyclerView, posters: List<Poster>?) {
+    posters.whatIfNotNullOrEmpty {
+      (view.adapter as? PosterLineAdapter)?.addPosterList(it)
+    }
+  }
+
+  @JvmStatic
+  @BindingAdapter("adapterPosterCircleList")
+  fun bindAdapterPosterCircleList(view: RecyclerView, posters: List<Poster>?) {
+    posters.whatIfNotNullOrEmpty {
+      (view.adapter as? PosterCircleAdapter)?.addPosterList(it)
+    }
   }
 }
