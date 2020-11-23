@@ -24,6 +24,7 @@ import com.skydoves.disneymotions.model.Poster
 import com.skydoves.disneymotions.view.adapter.PosterAdapter
 import com.skydoves.disneymotions.view.adapter.PosterCircleAdapter
 import com.skydoves.disneymotions.view.adapter.PosterLineAdapter
+import com.skydoves.whatif.whatIfNotNullAs
 import com.skydoves.whatif.whatIfNotNullOrEmpty
 
 object RecyclerViewBinding {
@@ -44,24 +45,30 @@ object RecyclerViewBinding {
   @JvmStatic
   @BindingAdapter("adapterPosterList")
   fun bindAdapterPosterList(view: RecyclerView, posters: List<Poster>?) {
-    posters.whatIfNotNullOrEmpty {
-      (view.adapter as? PosterAdapter)?.addPosterList(it)
+    posters.whatIfNotNullOrEmpty { items ->
+      view.adapter.whatIfNotNullAs<PosterAdapter> { adapter ->
+        adapter.addPosterList(items)
+      }
     }
   }
 
   @JvmStatic
   @BindingAdapter("adapterPosterLineList")
   fun bindAdapterPosterLineList(view: RecyclerView, posters: List<Poster>?) {
-    posters.whatIfNotNullOrEmpty {
-      (view.adapter as? PosterLineAdapter)?.addPosterList(it)
+    posters.whatIfNotNullOrEmpty { items ->
+      view.adapter.whatIfNotNullAs<PosterLineAdapter> { adapter ->
+        adapter.addPosterList(items)
+      }
     }
   }
 
   @JvmStatic
   @BindingAdapter("adapterPosterCircleList")
   fun bindAdapterPosterCircleList(view: RecyclerView, posters: List<Poster>?) {
-    posters.whatIfNotNullOrEmpty {
-      (view.adapter as? PosterCircleAdapter)?.addPosterList(it)
+    posters.whatIfNotNullOrEmpty { items ->
+      view.adapter.whatIfNotNullAs<PosterCircleAdapter> { adapter ->
+        adapter.addPosterList(items)
+      }
     }
   }
 }
