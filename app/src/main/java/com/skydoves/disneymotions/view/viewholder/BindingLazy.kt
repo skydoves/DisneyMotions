@@ -21,6 +21,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 
 inline fun <reified T : ViewDataBinding> bindings(view: View): Lazy<T> =
-  lazy {
+  lazy(LazyThreadSafetyMode.NONE) {
     requireNotNull(DataBindingUtil.bind<T>(view)) { "cannot find the matched view to layout." }
   }

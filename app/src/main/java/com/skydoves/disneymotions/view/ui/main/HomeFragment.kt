@@ -40,7 +40,7 @@ class HomeFragment : DatabindingFragment() {
     inflater: LayoutInflater,
     container: ViewGroup?,
     savedInstanceState: Bundle?
-  ): View? {
+  ): View {
     return binding<FragmentHomeBinding>(inflater, R.layout.fragment_home, container).apply {
       viewModel = getSharedViewModel()
       lifecycleOwner = viewLifecycleOwner

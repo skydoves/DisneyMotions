@@ -32,7 +32,7 @@ class LibraryFragment : DatabindingFragment() {
     inflater: LayoutInflater,
     container: ViewGroup?,
     savedInstanceState: Bundle?
-  ): View? {
+  ): View {
     return binding<FragmentLibraryBinding>(inflater, R.layout.fragment_library, container).apply {
       viewModel = getSharedViewModel()
       lifecycleOwner = viewLifecycleOwner
