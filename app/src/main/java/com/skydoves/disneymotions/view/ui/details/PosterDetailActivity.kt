@@ -29,6 +29,7 @@ import com.skydoves.disneymotions.base.DatabindingActivity
 import com.skydoves.disneymotions.databinding.ActivityPosterDetailBinding
 import com.skydoves.disneymotions.extensions.applyMaterialTransform
 import com.skydoves.disneymotions.model.Poster
+import com.skydoves.whatif.whatIfNotNullAs
 import org.koin.android.viewmodel.ext.android.getViewModel
 
 class PosterDetailActivity : DatabindingActivity() {
@@ -60,15 +61,15 @@ class PosterDetailActivity : DatabindingActivity() {
     private const val EXTRA_POSTER_ID = "EXTRA_POSTER_ID"
 
     fun startActivity(context: Context?, startView: View, poster: Poster) {
-      if (context is Activity) {
-        context.intentOf<PosterDetailActivity> {
+      context.whatIfNotNullAs<Activity> {
+        it.intentOf<PosterDetailActivity> {
           putExtra(EXTRA_POSTER_ID, poster.id)
           val options = ActivityOptions.makeSceneTransitionAnimation(
-            context,
+            it,
             startView,
             poster.name
           )
-          startActivity(context, options.toBundle())
+          startActivity(it, options.toBundle())
         }
       }
     }
