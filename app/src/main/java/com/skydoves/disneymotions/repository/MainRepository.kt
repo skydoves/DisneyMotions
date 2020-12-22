@@ -17,9 +17,13 @@
 package com.skydoves.disneymotions.repository
 
 import androidx.annotation.WorkerThread
+import com.skydoves.disneymotions.mapper.ErrorResponseMapper
 import com.skydoves.disneymotions.model.Poster
+import com.skydoves.disneymotions.model.PosterErrorResponse
 import com.skydoves.disneymotions.network.DisneyService
 import com.skydoves.disneymotions.persistence.PosterDao
+import com.skydoves.sandwich.ApiResponse
+import com.skydoves.sandwich.map
 import com.skydoves.sandwich.message
 import com.skydoves.sandwich.onError
 import com.skydoves.sandwich.onException
@@ -57,12 +61,13 @@ class MainRepository constructor(
           }
         }
           // handle the case when the API request gets an error response.
-          // e.g. internal server error.
+          // e.g., internal server error.
           .onError {
-            onError(message())
+            /** maps the [ApiResponse.Failure.Error] to the [PosterErrorResponse] using the mapper. */
+            map(ErrorResponseMapper) { onError("[Code: $code]: $message") }
           }
           // handle the case when the API request gets an exception response.
-          // e.g. network connection error.
+          // e.g., network connection error.
           .onException {
             onError(message())
           }
