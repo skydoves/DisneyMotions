@@ -46,6 +46,10 @@ Go to the [Releases](https://github.com/skydoves/DisneyMotions/releases) to down
 - [Timber](https://github.com/JakeWharton/timber) - logging
 - Ripple animation, Shared element container transform/transition
 
+## MAD Score
+![summary](https://user-images.githubusercontent.com/24237865/103010250-58eaaa00-457b-11eb-90d6-e62beda756b0.png)
+![kotlin](https://user-images.githubusercontent.com/24237865/103010255-5a1bd700-457b-11eb-8959-0a7c4a2b4bda.png)
+
 ## Unit Testing Frameworks
 Unit Tests verify the interactions of viewmodels between repositories and dao & REST api requests.
 - [Robolectric](https://github.com/robolectric/robolectric) - Robolectric is the industry-standard unit testing framework for Android.
