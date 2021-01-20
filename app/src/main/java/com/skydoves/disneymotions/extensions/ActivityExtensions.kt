@@ -47,7 +47,7 @@ fun AppCompatActivity.applyExitMaterialTransform() {
 }
 
 /** apply material entered container transformation. */
-fun AppCompatActivity.applyMaterialTransform(transitionName: String) {
+fun AppCompatActivity.applyMaterialTransform(transitionName: String?) {
   window.requestFeature(Window.FEATURE_ACTIVITY_TRANSITIONS)
   ViewCompat.setTransitionName(findViewById(android.R.id.content), transitionName)
 

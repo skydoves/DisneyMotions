@@ -40,7 +40,7 @@ import kotlin.math.abs
 object ViewBinding {
   @JvmStatic
   @BindingAdapter("loadImage")
-  fun bindLoadImage(view: AppCompatImageView, url: String) {
+  fun bindLoadImage(view: AppCompatImageView, url: String?) {
     Glide.with(view.context)
       .load(url)
       .into(view)
