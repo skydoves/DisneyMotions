@@ -16,11 +16,14 @@
 
 package com.skydoves.disneymotions.repository
 
+import com.nhaarman.mockitokotlin2.atLeastOnce
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
 import com.skydoves.disneymotions.persistence.PosterDao
 import com.skydoves.disneymotions.utils.MockTestUtil.mockPoster
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.runBlocking
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.core.Is.`is`
 import org.junit.Before
@@ -37,12 +40,18 @@ class DetailRepositoryTest {
   }
 
   @Test
-  fun getPosterByIdTest() {
+  fun getPosterByIdTest() = runBlocking<Unit> {
     val mockData = mockPoster()
-    whenever(posterDao.getPoster(0)).thenReturn(mockPoster())
+    whenever(posterDao.getPoster(0)).thenReturn(mockData)
 
-    val loadFromDB = repository.getPosterById(0)
-    verify(posterDao).getPoster(0)
-    assertThat(loadFromDB, `is`(mockData))
+    repository.getPosterById(0)
+      .collect {
+        assertThat(it.id, `is`(0L))
+        assertThat(it.name, `is`("Frozen II"))
+        assertThat(it.release, `is`("2019"))
+        assertThat(it, `is`(mockData))
+      }
+
+    verify(posterDao, atLeastOnce()).getPoster(0)
   }
 }

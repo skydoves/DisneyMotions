@@ -16,17 +16,22 @@
 
 package com.skydoves.disneymotions.viewmodel
 
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.lifecycle.Observer
+import androidx.lifecycle.asLiveData
+import com.nhaarman.mockitokotlin2.atLeastOnce
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
 import com.skydoves.disneymotions.MainCoroutinesRule
+import com.skydoves.disneymotions.model.Poster
+import com.skydoves.disneymotions.persistence.PosterDao
 import com.skydoves.disneymotions.repository.DetailRepository
 import com.skydoves.disneymotions.utils.MockTestUtil.mockPoster
 import com.skydoves.disneymotions.view.ui.details.PosterDetailViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.runBlocking
-import org.hamcrest.MatcherAssert.assertThat
-import org.hamcrest.core.Is.`is`
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -35,24 +40,35 @@ import org.junit.Test
 class PosterDetailViewModelTest {
 
   private lateinit var viewModel: PosterDetailViewModel
-  private val repository: DetailRepository = mock()
+  private lateinit var repository: DetailRepository
+  private val posterDao: PosterDao = mock()
 
   @ExperimentalCoroutinesApi
   @get:Rule
   var coroutinesRule = MainCoroutinesRule()
 
+  @get:Rule
+  var instantExecutorRule = InstantTaskExecutorRule()
+
   @Before
   fun setup() {
+    repository = DetailRepository(posterDao)
     viewModel = PosterDetailViewModel(repository)
   }
 
   @Test
   fun getPosterTest() = runBlocking {
     val mockData = mockPoster()
-    whenever(repository.getPosterById(0)).thenReturn(mockPoster())
+    whenever(posterDao.getPoster(0)).thenReturn(mockData)
 
-    val loadFromDB = viewModel.getPoster(0)
-    verify(repository).getPosterById(0)
-    assertThat(loadFromDB, `is`(mockData))
+    val dataFromDB = repository.getPosterById(0).asLiveData()
+    val observer: Observer<Poster> = mock()
+    dataFromDB.observeForever(observer)
+
+    delay(500L)
+
+    verify(posterDao, atLeastOnce()).getPoster(0)
+    verify(observer).onChanged(mockData)
+    dataFromDB.removeObserver(observer)
   }
 }
