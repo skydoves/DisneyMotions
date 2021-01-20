@@ -38,11 +38,13 @@ Go to the [Releases](https://github.com/skydoves/DisneyMotions/releases) to down
   - Repository pattern
   - [Koin](https://github.com/InsertKoinIO/koin) - dependency injection
 - Material Design & Animations
+- [Sandwich](https://github.com/skydoves/Sandwich) - construct lightweight network response interfaces and handling error responses.
 - [Retrofit2 & Gson](https://github.com/square/retrofit) - constructing the REST API
 - [OkHttp3](https://github.com/square/okhttp) - implementing interceptor, logging and mocking web server
 - [Glide](https://github.com/bumptech/glide) - loading images
 - [BaseRecyclerViewAdapter](https://github.com/skydoves/BaseRecyclerViewAdapter) - implementing adapters and viewHolders
 - [WhatIf](https://github.com/skydoves/whatif) - checking nullable object and empty collections more fluently
+- [Bundler](https://github.com/skydoves/bundler) - Android Intent & Bundle extensions that insert and retrieve values elegantly.
 - [Timber](https://github.com/JakeWharton/timber) - logging
 - Ripple animation, Shared element container transform/transition
 
