@@ -29,7 +29,7 @@ interface PosterDao {
   suspend fun insertPosterList(posters: List<Poster>)
 
   @Query("SELECT * FROM Poster WHERE id = :id_")
-  fun getPoster(id_: Long): Poster
+  suspend fun getPoster(id_: Long): Poster
 
   @Query("SELECT * FROM Poster")
   suspend fun getPosterList(): List<Poster>

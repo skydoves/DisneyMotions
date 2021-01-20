@@ -25,13 +25,11 @@ import org.koin.dsl.module
 val persistenceModule = module {
 
   single {
-    Room
-      .databaseBuilder(
-        androidApplication(),
-        AppDatabase::class.java,
-        androidApplication().getString(R.string.database)
-      )
-      .allowMainThreadQueries()
+    Room.databaseBuilder(
+      androidApplication(),
+      AppDatabase::class.java,
+      androidApplication().getString(R.string.database)
+    )
       .fallbackToDestructiveMigration()
       .build()
   }
