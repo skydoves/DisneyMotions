@@ -23,7 +23,6 @@ import com.skydoves.disneymotions.model.PosterErrorResponse
 import com.skydoves.disneymotions.network.DisneyService
 import com.skydoves.disneymotions.persistence.PosterDao
 import com.skydoves.sandwich.ApiResponse
-import com.skydoves.sandwich.map
 import com.skydoves.sandwich.message
 import com.skydoves.sandwich.onError
 import com.skydoves.sandwich.onException
@@ -44,34 +43,35 @@ class MainRepository constructor(
   }
 
   @WorkerThread
-  suspend fun loadDisneyPosters(
+  fun loadDisneyPosters(
     onSuccess: () -> Unit,
     onError: (String) -> Unit
   ) = flow {
     val posters: List<Poster> = posterDao.getPosterList()
     if (posters.isEmpty()) {
-      // request API network call asynchronously.
-      disneyService.fetchDisneyPosterList().apply {
-        // handle the case when the API request gets a success response.
-        this.suspendOnSuccess {
+      // request API network request asynchronously.
+      disneyService.fetchDisneyPosterList()
+        // handles the success case when the API request gets a successful response.
+        .suspendOnSuccess {
           data.whatIfNotNull {
             posterDao.insertPosterList(it)
             emit(it)
             onSuccess()
           }
         }
-          // handle the case when the API request gets an error response.
-          // e.g., internal server error.
-          .onError {
-            /** maps the [ApiResponse.Failure.Error] to the [PosterErrorResponse] using the mapper. */
-            map(ErrorResponseMapper) { onError("[Code: $code]: $message") }
-          }
-          // handle the case when the API request gets an exception response.
-          // e.g., network connection error.
-          .onException {
-            onError(message())
-          }
-      }
+        /**
+         * handles error cases when the API request gets an error response.
+         * e.g., internal server error.
+         * maps the [ApiResponse.Failure.Error] to the [PosterErrorResponse] using the mapper.
+         */
+        .onError(ErrorResponseMapper) {
+          onError("[Code: $code]: $message")
+        }
+        // handles exceptional cases when the API request gets an exception response.
+        // e.g., network connection error.
+        .onException {
+          onError(message())
+        }
     } else {
       emit(posters)
       onSuccess()
