@@ -16,12 +16,30 @@
 
 package com.skydoves.disneymotions.view.ui.details
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.asLiveData
+import androidx.lifecycle.switchMap
 import com.skydoves.disneymotions.base.LiveCoroutinesViewModel
+import com.skydoves.disneymotions.model.Poster
 import com.skydoves.disneymotions.repository.DetailRepository
 
 class PosterDetailViewModel(
   private val repository: DetailRepository
 ) : LiveCoroutinesViewModel() {
 
-  fun getPoster(id: Long) = repository.getPosterById(id)
+  private val posterIdLiveData: MutableLiveData<Long> = MutableLiveData()
+  val poster: LiveData<Poster>
+
+  init {
+    poster = posterIdLiveData.switchMap {
+      launchOnViewModelScope {
+        repository.getPosterById(it).asLiveData()
+      }
+    }
+  }
+
+  fun getPoster(id: Long) = apply {
+    posterIdLiveData.postValue(id)
+  }
 }

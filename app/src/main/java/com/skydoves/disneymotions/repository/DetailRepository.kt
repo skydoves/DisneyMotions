@@ -17,10 +17,16 @@
 package com.skydoves.disneymotions.repository
 
 import com.skydoves.disneymotions.persistence.PosterDao
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
 
 class DetailRepository constructor(
   private val posterDao: PosterDao
 ) : Repository {
 
-  fun getPosterById(id: Long) = posterDao.getPoster(id)
+  fun getPosterById(id: Long) = flow {
+    val poster = posterDao.getPoster(id)
+    emit(poster)
+  }.flowOn(Dispatchers.IO)
 }

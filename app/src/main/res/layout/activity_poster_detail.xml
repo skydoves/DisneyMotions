@@ -6,8 +6,8 @@
   <data>
 
     <variable
-      name="poster"
-      type="com.skydoves.disneymotions.model.Poster" />
+      name="vm"
+      type="com.skydoves.disneymotions.view.ui.details.PosterDetailViewModel" />
 
     <variable
       name="activity"
@@ -58,7 +58,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:loadImage="@{poster.poster}" />
+            app:loadImage="@{vm.poster.poster}" />
 
           <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab_more"
@@ -121,7 +121,7 @@
                 android:ellipsize="end"
                 android:maxEms="20"
                 android:maxLines="15"
-                android:text="@{poster.plot}"
+                android:text="@{vm.poster.plot}"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
                 android:textColor="@color/white_87"
                 app:layout_constraintStart_toStartOf="parent"
@@ -141,7 +141,7 @@
           app:layout_collapseMode="pin"
           app:layout_constraintStart_toStartOf="parent"
           app:layout_constraintTop_toTopOf="parent"
-          app:simpleToolbarTitle="@{poster.name}"
+          app:simpleToolbarTitle="@{vm.poster.name}"
           app:simpleToolbarWithHome="@{activity}" />
 
       </com.google.android.material.appbar.CollapsingToolbarLayout>
@@ -162,7 +162,7 @@
           android:id="@+id/detail_title"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:text="@{poster.name}"
+          android:text="@{vm.poster.name}"
           android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
           android:textSize="28sp"
           android:textStyle="bold"
@@ -175,7 +175,7 @@
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:layout_marginTop="8dp"
-          android:text="@{poster.description}"
+          android:text="@{vm.poster.description}"
           android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
           android:textColor="@color/white_87"
           android:textStyle="italic"

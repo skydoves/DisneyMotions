@@ -23,6 +23,7 @@ import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
 import com.skydoves.bundler.bundle
+import com.skydoves.bundler.bundleNonNull
 import com.skydoves.bundler.intentOf
 import com.skydoves.disneymotions.R
 import com.skydoves.disneymotions.base.DatabindingActivity
@@ -36,13 +37,13 @@ class PosterDetailActivity : DatabindingActivity() {
 
   private val binding: ActivityPosterDetailBinding by binding(R.layout.activity_poster_detail)
   private val posterId: Long by bundle(EXTRA_POSTER_ID, -1)
+  private val posterName: String by bundleNonNull(EXTRA_POSTER_NAME)
 
   override fun onCreate(savedInstanceState: Bundle?) {
+    applyMaterialTransform(posterName)
     super.onCreate(savedInstanceState)
-    val poster = getViewModel<PosterDetailViewModel>().getPoster(posterId)
-    applyMaterialTransform(poster.name)
     binding.apply {
-      this.poster = poster
+      vm = getViewModel<PosterDetailViewModel>().getPoster(posterId)
       lifecycleOwner = this@PosterDetailActivity
       activity = this@PosterDetailActivity
       container = detailContainer
@@ -59,11 +60,13 @@ class PosterDetailActivity : DatabindingActivity() {
 
   companion object {
     private const val EXTRA_POSTER_ID = "EXTRA_POSTER_ID"
+    private const val EXTRA_POSTER_NAME = "EXTRA_POSTER_NAME"
 
     fun startActivity(context: Context?, startView: View, poster: Poster) {
       context.whatIfNotNullAs<Activity> {
         it.intentOf<PosterDetailActivity> {
-          putExtra(EXTRA_POSTER_ID, poster.id)
+          putExtra(EXTRA_POSTER_ID to poster.id)
+          putExtra(EXTRA_POSTER_NAME to poster.name)
           val options = ActivityOptions.makeSceneTransitionAnimation(
             it,
             startView,
