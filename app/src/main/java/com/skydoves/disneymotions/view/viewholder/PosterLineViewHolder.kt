@@ -44,7 +44,7 @@ class PosterLineViewHolder(view: View) : BaseViewHolder(view) {
   }
 
   override fun onClick(p0: View?) =
-    PosterDetailActivity.startActivity(context(), binding.itemContainer, data)
+    PosterDetailActivity.startActivity(context, binding.itemContainer, data)
 
   override fun onLongClick(p0: View?) = false
 }
