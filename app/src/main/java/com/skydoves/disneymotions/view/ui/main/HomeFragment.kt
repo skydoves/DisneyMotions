@@ -24,28 +24,26 @@ import android.view.View
 import android.view.ViewGroup
 import com.google.android.material.transition.platform.MaterialArcMotion
 import com.google.android.material.transition.platform.MaterialContainerTransform
+import com.skydoves.bindables.BindingFragment
 import com.skydoves.disneymotions.R
-import com.skydoves.disneymotions.base.DatabindingFragment
 import com.skydoves.disneymotions.databinding.FragmentHomeBinding
 import com.skydoves.disneymotions.extensions.gone
 import com.skydoves.disneymotions.extensions.visible
 import com.skydoves.disneymotions.view.adapter.PosterAdapter
 import org.koin.android.viewmodel.ext.android.getSharedViewModel
 
-class HomeFragment : DatabindingFragment() {
-
-  private lateinit var binding: FragmentHomeBinding
+class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home) {
 
   override fun onCreateView(
     inflater: LayoutInflater,
     container: ViewGroup?,
     savedInstanceState: Bundle?
   ): View {
-    return binding<FragmentHomeBinding>(inflater, R.layout.fragment_home, container).apply {
+    super.onCreateView(inflater, container, savedInstanceState)
+    return binding {
       viewModel = getSharedViewModel()
       lifecycleOwner = viewLifecycleOwner
       adapter = PosterAdapter()
-      this@HomeFragment.binding = this
     }.root
   }
 

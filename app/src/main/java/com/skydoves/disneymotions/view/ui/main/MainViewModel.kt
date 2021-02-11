@@ -16,10 +16,10 @@
 
 package com.skydoves.disneymotions.view.ui.main
 
+import androidx.databinding.Bindable
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.asLiveData
-import androidx.lifecycle.switchMap
+import com.skydoves.bindables.bindingProperty
 import com.skydoves.disneymotions.base.LiveCoroutinesViewModel
 import com.skydoves.disneymotions.model.Poster
 import com.skydoves.disneymotions.repository.MainRepository
@@ -29,26 +29,24 @@ class MainViewModel constructor(
   private val mainRepository: MainRepository
 ) : LiveCoroutinesViewModel() {
 
-  private var posterFetchingLiveData: MutableLiveData<Boolean> = MutableLiveData(true)
   val posterListLiveData: LiveData<List<Poster>>
 
-  private val _isLoading: MutableLiveData<Boolean> = MutableLiveData(false)
-  val isLoading: LiveData<Boolean> get() = _isLoading
+  @get:Bindable
+  var isLoading: Boolean by bindingProperty(true)
+    private set
 
-  private val _toastLiveData: MutableLiveData<String> = MutableLiveData()
-  val toastLiveData: LiveData<String> get() = _toastLiveData
+  @get:Bindable
+  var errorToast: String? by bindingProperty(null)
+    private set
 
   init {
     Timber.d("injection MainViewModel")
 
-    posterListLiveData = posterFetchingLiveData.switchMap {
-      _isLoading.postValue(true)
-      launchOnViewModelScope {
-        this.mainRepository.loadDisneyPosters(
-          onSuccess = { _isLoading.postValue(false) },
-          onError = { _toastLiveData.postValue(it) }
-        ).asLiveData()
-      }
+    posterListLiveData = launchOnViewModelScope {
+      this.mainRepository.loadDisneyPosters(
+        onSuccess = { isLoading = false },
+        onError = { errorToast = it }
+      ).asLiveData()
     }
   }
 }

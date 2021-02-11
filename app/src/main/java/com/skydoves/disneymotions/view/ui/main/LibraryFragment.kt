@@ -20,20 +20,21 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.skydoves.bindables.BindingFragment
 import com.skydoves.disneymotions.R
-import com.skydoves.disneymotions.base.DatabindingFragment
 import com.skydoves.disneymotions.databinding.FragmentLibraryBinding
 import com.skydoves.disneymotions.view.adapter.PosterLineAdapter
 import org.koin.android.viewmodel.ext.android.getSharedViewModel
 
-class LibraryFragment : DatabindingFragment() {
+class LibraryFragment : BindingFragment<FragmentLibraryBinding>(R.layout.fragment_library) {
 
   override fun onCreateView(
     inflater: LayoutInflater,
     container: ViewGroup?,
     savedInstanceState: Bundle?
   ): View {
-    return binding<FragmentLibraryBinding>(inflater, R.layout.fragment_library, container).apply {
+    super.onCreateView(inflater, container, savedInstanceState)
+    return binding {
       viewModel = getSharedViewModel()
       lifecycleOwner = viewLifecycleOwner
       adapter = PosterLineAdapter()

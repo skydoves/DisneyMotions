@@ -17,20 +17,18 @@
 package com.skydoves.disneymotions.view.ui.main
 
 import android.os.Bundle
+import com.skydoves.bindables.BindingActivity
 import com.skydoves.disneymotions.R
-import com.skydoves.disneymotions.base.DatabindingActivity
 import com.skydoves.disneymotions.databinding.ActivityMainBinding
 import com.skydoves.disneymotions.extensions.applyExitMaterialTransform
 import org.koin.android.viewmodel.ext.android.getViewModel
 
-class MainActivity : DatabindingActivity() {
-
-  private val binding: ActivityMainBinding by binding(R.layout.activity_main)
+class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main) {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     applyExitMaterialTransform()
     super.onCreate(savedInstanceState)
-    binding.apply {
+    binding {
       pagerAdapter = MainPagerAdapter(this@MainActivity)
       lifecycleOwner = this@MainActivity
       vm = getViewModel()

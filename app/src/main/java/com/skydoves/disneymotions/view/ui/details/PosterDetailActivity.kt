@@ -22,27 +22,27 @@ import android.content.Context
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
+import com.skydoves.bindables.BindingActivity
 import com.skydoves.bundler.bundle
 import com.skydoves.bundler.bundleNonNull
 import com.skydoves.bundler.intentOf
 import com.skydoves.disneymotions.R
-import com.skydoves.disneymotions.base.DatabindingActivity
 import com.skydoves.disneymotions.databinding.ActivityPosterDetailBinding
 import com.skydoves.disneymotions.extensions.applyMaterialTransform
 import com.skydoves.disneymotions.model.Poster
 import com.skydoves.whatif.whatIfNotNullAs
 import org.koin.android.viewmodel.ext.android.getViewModel
 
-class PosterDetailActivity : DatabindingActivity() {
+class PosterDetailActivity :
+  BindingActivity<ActivityPosterDetailBinding>(R.layout.activity_poster_detail) {
 
-  private val binding: ActivityPosterDetailBinding by binding(R.layout.activity_poster_detail)
   private val posterId: Long by bundle(EXTRA_POSTER_ID, -1)
   private val posterName: String by bundleNonNull(EXTRA_POSTER_NAME)
 
   override fun onCreate(savedInstanceState: Bundle?) {
     applyMaterialTransform(posterName)
     super.onCreate(savedInstanceState)
-    binding.apply {
+    binding {
       vm = getViewModel<PosterDetailViewModel>().getPoster(posterId)
       lifecycleOwner = this@PosterDetailActivity
       activity = this@PosterDetailActivity

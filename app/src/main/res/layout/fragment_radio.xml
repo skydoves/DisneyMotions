@@ -33,7 +33,7 @@
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent"
       app:spanCount="2"
-      app:toast="@{viewModel.toastLiveData}"
+      app:toast="@{viewModel.errorToast}"
       tools:listitem="@layout/item_poster_circle" />
 
   </androidx.constraintlayout.widget.ConstraintLayout>
