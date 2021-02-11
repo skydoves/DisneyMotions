@@ -10,7 +10,7 @@ ext.versions = [
     versionPlugin          : '0.23.0',
 
     // kotlin
-    kotlin                 : '1.4.21',
+    kotlin                 : '1.4.20',
 
     // support library
     materialVersion        : '1.3.0',
@@ -20,6 +20,9 @@ ext.versions = [
     lifecycleVersion       : '2.2.0',
     roomVersion            : '2.2.6',
     archCompomentVersion   : '2.1.0',
+
+    // binding
+    bindablesVersion       : '1.0.0-SNAPSHOT',
 
     // di
     koinVersion            : '2.0.1',
