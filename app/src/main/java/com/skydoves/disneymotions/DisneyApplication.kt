@@ -19,6 +19,7 @@
 package com.skydoves.disneymotions
 
 import android.app.Application
+import com.skydoves.bindables.BindingManager
 import com.skydoves.disneymotions.di.networkModule
 import com.skydoves.disneymotions.di.persistenceModule
 import com.skydoves.disneymotions.di.repositoryModule
@@ -39,6 +40,8 @@ class DisneyApplication : Application() {
       modules(repositoryModule)
       modules(viewModelModule)
     }
+
+    BindingManager.bind(BR::class)
 
     if (BuildConfig.DEBUG) {
       Timber.plant(Timber.DebugTree())
