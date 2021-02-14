@@ -22,7 +22,7 @@ ext.versions = [
     archCompomentVersion   : '2.1.0',
 
     // binding
-    bindablesVersion       : '1.0.0',
+    bindablesVersion       : '1.0.2',
 
     // di
     koinVersion            : '2.0.1',

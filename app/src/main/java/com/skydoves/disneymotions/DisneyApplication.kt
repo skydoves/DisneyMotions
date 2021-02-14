@@ -33,6 +33,7 @@ class DisneyApplication : Application() {
   override fun onCreate() {
     super.onCreate()
 
+    // initialize koin
     startKoin {
       androidContext(this@DisneyApplication)
       modules(networkModule)
@@ -41,8 +42,10 @@ class DisneyApplication : Application() {
       modules(viewModelModule)
     }
 
+    // initialize bindables
     BindingManager.bind(BR::class)
 
+    // initialize timber
     if (BuildConfig.DEBUG) {
       Timber.plant(Timber.DebugTree())
     }
