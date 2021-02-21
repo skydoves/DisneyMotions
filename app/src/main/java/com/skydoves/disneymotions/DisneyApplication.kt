@@ -19,7 +19,6 @@
 package com.skydoves.disneymotions
 
 import android.app.Application
-import com.skydoves.bindables.BindingManager
 import com.skydoves.disneymotions.di.networkModule
 import com.skydoves.disneymotions.di.persistenceModule
 import com.skydoves.disneymotions.di.repositoryModule
@@ -33,7 +32,6 @@ class DisneyApplication : Application() {
   override fun onCreate() {
     super.onCreate()
 
-    // initialize koin
     startKoin {
       androidContext(this@DisneyApplication)
       modules(networkModule)
@@ -42,10 +40,6 @@ class DisneyApplication : Application() {
       modules(viewModelModule)
     }
 
-    // initialize bindables
-    BindingManager.bind(BR::class)
-
-    // initialize timber
     if (BuildConfig.DEBUG) {
       Timber.plant(Timber.DebugTree())
     }
