@@ -16,6 +16,7 @@
 
 package com.skydoves.disneymotions.view.ui.details
 
+import androidx.annotation.MainThread
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.asLiveData
@@ -29,17 +30,14 @@ class PosterDetailViewModel(
 ) : LiveCoroutinesViewModel() {
 
   private val posterIdLiveData: MutableLiveData<Long> = MutableLiveData()
-  val poster: LiveData<Poster>
-
-  init {
-    poster = posterIdLiveData.switchMap {
-      launchOnViewModelScope {
-        repository.getPosterById(it).asLiveData()
-      }
+  val poster: LiveData<Poster> = posterIdLiveData.switchMap {
+    launchOnViewModelScope {
+      repository.getPosterById(it).asLiveData()
     }
   }
 
+  @MainThread
   fun getPoster(id: Long) = apply {
-    posterIdLiveData.postValue(id)
+    posterIdLiveData.value = id
   }
 }
