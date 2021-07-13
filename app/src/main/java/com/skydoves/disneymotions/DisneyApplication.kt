@@ -23,6 +23,8 @@ import com.skydoves.disneymotions.di.networkModule
 import com.skydoves.disneymotions.di.persistenceModule
 import com.skydoves.disneymotions.di.repositoryModule
 import com.skydoves.disneymotions.di.viewModelModule
+import com.skydoves.disneymotions.network.GlobalResponseOperator
+import com.skydoves.sandwich.SandwichInitializer
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import timber.log.Timber
@@ -39,6 +41,9 @@ class DisneyApplication : Application() {
       modules(repositoryModule)
       modules(viewModelModule)
     }
+
+    // initialize global sandwich operator
+    SandwichInitializer.sandwichOperator = GlobalResponseOperator<Any>(this)
 
     if (BuildConfig.DEBUG) {
       Timber.plant(Timber.DebugTree())

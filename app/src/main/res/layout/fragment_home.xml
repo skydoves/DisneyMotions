@@ -29,7 +29,6 @@
       app:adapterPosterList="@{viewModel.posterList}"
       app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
       app:spanCount="2"
-      app:toast="@{viewModel.errorToast}"
       tools:listitem="@layout/item_poster" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

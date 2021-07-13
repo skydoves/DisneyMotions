@@ -33,13 +33,8 @@ class MainViewModel constructor(
   var isLoading: Boolean by bindingProperty(true)
     private set
 
-  @get:Bindable
-  var errorToast: String? by bindingProperty(null)
-    private set
-
   private val posterListFlow = mainRepository.loadDisneyPosters(
-    onSuccess = { isLoading = false },
-    onError = { errorToast = it }
+    onSuccess = { isLoading = false }
   )
 
   @get:Bindable

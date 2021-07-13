@@ -45,7 +45,6 @@ class MainRepository constructor(
   @WorkerThread
   fun loadDisneyPosters(
     onSuccess: () -> Unit,
-    onError: (String) -> Unit
   ) = flow {
     val posters: List<Poster> = posterDao.getPosterList()
     if (posters.isEmpty()) {
@@ -62,12 +61,12 @@ class MainRepository constructor(
          * maps the [ApiResponse.Failure.Error] to the [PosterErrorResponse] using the mapper.
          */
         .onError(ErrorResponseMapper) {
-          onError("[Code: $code]: $message")
+          Timber.d("[Code: $code]: $message")
         }
         // handles exceptional cases when the API request gets an exception response.
         // e.g., network connection error.
         .onException {
-          onError(message())
+          Timber.d(message())
         }
     } else {
       emit(posters)
