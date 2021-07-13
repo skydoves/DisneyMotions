@@ -33,16 +33,14 @@ class GlobalResponseOperator<T> constructor(
 ) : ApiResponseSuspendOperator<T>() {
 
   override suspend fun onError(apiResponse: ApiResponse.Failure.Error<T>) =
-    withContext(Dispatchers.IO) {
+    withContext(Dispatchers.Main) {
       apiResponse.run {
         Timber.d(message())
 
-        withContext(Dispatchers.Main) {
-          when (statusCode) {
-            StatusCode.InternalServerError -> toast("InternalServerError")
-            StatusCode.BadGateway -> toast("BadGateway")
-            else -> toast("$statusCode(${statusCode.code}): ${message()}")
-          }
+        when (statusCode) {
+          StatusCode.InternalServerError -> toast("InternalServerError")
+          StatusCode.BadGateway -> toast("BadGateway")
+          else -> toast("$statusCode(${statusCode.code}): ${message()}")
         }
 
         map(ErrorResponseMapper) {
