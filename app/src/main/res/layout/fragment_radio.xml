@@ -26,7 +26,7 @@
       android:clipToPadding="false"
       android:padding="4dp"
       app:adapter="@{adapter}"
-      app:adapterPosterCircleList="@{viewModel.posterListLiveData}"
+      app:adapterPosterCircleList="@{viewModel.posterList}"
       app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"

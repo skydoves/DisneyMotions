@@ -27,7 +27,7 @@
       android:orientation="vertical"
       android:padding="4dp"
       app:adapter="@{adapter}"
-      app:adapterPosterLineList="@{viewModel.posterListLiveData}"
+      app:adapterPosterLineList="@{viewModel.posterList}"
       app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
