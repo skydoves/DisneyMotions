@@ -30,7 +30,6 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
     super.onCreate(savedInstanceState)
     binding {
       pagerAdapter = MainPagerAdapter(this@MainActivity)
-      lifecycleOwner = this@MainActivity
       vm = getViewModel()
     }
   }

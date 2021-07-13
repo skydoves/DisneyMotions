@@ -36,7 +36,6 @@ class RadioFragment : BindingFragment<FragmentRadioBinding>(R.layout.fragment_ra
     super.onCreateView(inflater, container, savedInstanceState)
     return binding {
       viewModel = getSharedViewModel()
-      lifecycleOwner = viewLifecycleOwner
       adapter = PosterCircleAdapter()
     }.root
   }
