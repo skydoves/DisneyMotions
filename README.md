@@ -29,12 +29,12 @@ Go to the [Releases](https://github.com/skydoves/DisneyMotions/releases) to down
 - Minimum SDK level 21
 - 100% [Kotlin](https://kotlinlang.org/) based + [Coroutines](https://github.com/Kotlin/kotlinx.coroutines) + [Flow](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/) for asynchronous.
 - JetPack
-  - LiveData - notify domain layer data to views.
   - Lifecycle - dispose observing data when lifecycle state changes.
   - ViewModel - UI related data holder, lifecycle aware.
   - Room Persistence - construct database.
 - Architecture
   - MVVM Architecture (View - DataBinding - ViewModel - Model)
+  - [Bindables](https://github.com/skydoves/bindables) - Android DataBinding kit for notifying data changes to UI layers.
   - Repository pattern
   - [Koin](https://github.com/InsertKoinIO/koin) - dependency injection
 - Material Design & Animations

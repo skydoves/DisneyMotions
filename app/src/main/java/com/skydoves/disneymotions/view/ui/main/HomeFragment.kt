@@ -42,7 +42,6 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
     super.onCreateView(inflater, container, savedInstanceState)
     return binding {
       viewModel = getSharedViewModel()
-      lifecycleOwner = viewLifecycleOwner
       adapter = PosterAdapter()
     }.root
   }

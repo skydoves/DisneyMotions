@@ -16,7 +16,6 @@
 
 package com.skydoves.disneymotions.binding
 
-import android.widget.Toast
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.skydoves.baserecyclerviewadapter.BaseAdapter
@@ -32,14 +31,6 @@ object RecyclerViewBinding {
   @BindingAdapter("adapter")
   fun bindAdapter(view: RecyclerView, baseAdapter: BaseAdapter) {
     view.adapter = baseAdapter
-  }
-
-  @JvmStatic
-  @BindingAdapter("toast")
-  fun bindToast(view: RecyclerView, text: String?) {
-    text.whatIfNotNullOrEmpty {
-      Toast.makeText(view.context, it, Toast.LENGTH_SHORT).show()
-    }
   }
 
   @JvmStatic

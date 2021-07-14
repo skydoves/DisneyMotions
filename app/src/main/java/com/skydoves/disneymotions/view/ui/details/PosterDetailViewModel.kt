@@ -16,28 +16,25 @@
 
 package com.skydoves.disneymotions.view.ui.details
 
-import androidx.annotation.MainThread
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.asLiveData
-import androidx.lifecycle.switchMap
-import com.skydoves.disneymotions.base.LiveCoroutinesViewModel
+import androidx.databinding.Bindable
+import androidx.lifecycle.viewModelScope
+import com.skydoves.bindables.BindingViewModel
+import com.skydoves.bindables.asBindingProperty
 import com.skydoves.disneymotions.model.Poster
 import com.skydoves.disneymotions.repository.DetailRepository
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.flatMapLatest
 
 class PosterDetailViewModel(
+  posterId: Long,
   private val repository: DetailRepository
-) : LiveCoroutinesViewModel() {
+) : BindingViewModel() {
 
-  private val posterIdLiveData: MutableLiveData<Long> = MutableLiveData()
-  val poster: LiveData<Poster> = posterIdLiveData.switchMap {
-    launchOnViewModelScope {
-      repository.getPosterById(it).asLiveData()
-    }
+  private val posterIdStateFlow: MutableStateFlow<Long> = MutableStateFlow(posterId)
+  private val posterFlow = posterIdStateFlow.flatMapLatest { id ->
+    repository.getPosterById(id)
   }
 
-  @MainThread
-  fun getPoster(id: Long) = apply {
-    posterIdLiveData.value = id
-  }
+  @get:Bindable
+  val poster: Poster? by posterFlow.asBindingProperty(viewModelScope, null)
 }

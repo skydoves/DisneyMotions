@@ -65,8 +65,7 @@ class MainViewModelTest {
     whenever(posterDao.getPosterList()).thenReturn(mockData)
 
     val fetchedData = mainRepository.loadDisneyPosters(
-      onSuccess = {},
-      onError = {}
+      onSuccess = {}
     ).asLiveData()
 
     val observer: Observer<List<Poster>> = mock()
