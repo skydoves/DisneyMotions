@@ -53,7 +53,7 @@ class PosterDetailViewModelTest {
   @Before
   fun setup() {
     repository = DetailRepository(posterDao)
-    viewModel = PosterDetailViewModel(repository)
+    viewModel = PosterDetailViewModel(0L, repository)
   }
 
   @Test

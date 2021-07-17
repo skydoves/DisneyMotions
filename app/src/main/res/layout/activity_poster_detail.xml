@@ -14,10 +14,6 @@
       type="androidx.appcompat.app.AppCompatActivity" />
 
     <variable
-      name="container"
-      type="androidx.coordinatorlayout.widget.CoordinatorLayout" />
-
-    <variable
       name="fab"
       type="com.google.android.material.floatingactionbutton.FloatingActionButton" />
   </data>
@@ -71,7 +67,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/profile_detail_background"
             app:layout_goneMarginBottom="26dp"
-            app:tint="@color/white" />
+            app:tint="@color/white"
+            tools:ignore="ContentDescription" />
 
           <Space
             android:layout_width="match_parent"
@@ -93,7 +90,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:transformContainer="@{container}"
+            app:transformContainer="@{detailContainer}"
             app:transformFab="@{fab}">
 
             <androidx.constraintlayout.widget.ConstraintLayout

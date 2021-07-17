@@ -27,13 +27,12 @@
       android:orientation="vertical"
       android:padding="4dp"
       app:adapter="@{adapter}"
-      app:adapterPosterLineList="@{viewModel.posterListLiveData}"
+      app:adapterPosterLineList="@{viewModel.posterList}"
       app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent"
-      app:toast="@{viewModel.errorToast}"
       tools:listitem="@layout/item_poster_line" />
 
   </androidx.constraintlayout.widget.ConstraintLayout>

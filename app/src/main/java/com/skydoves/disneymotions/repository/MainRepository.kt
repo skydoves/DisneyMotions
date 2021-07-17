@@ -27,10 +27,10 @@ import com.skydoves.sandwich.message
 import com.skydoves.sandwich.onError
 import com.skydoves.sandwich.onException
 import com.skydoves.sandwich.suspendOnSuccess
-import com.skydoves.whatif.whatIfNotNull
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.onCompletion
 import timber.log.Timber
 
 class MainRepository constructor(
@@ -45,7 +45,6 @@ class MainRepository constructor(
   @WorkerThread
   fun loadDisneyPosters(
     onSuccess: () -> Unit,
-    onError: (String) -> Unit
   ) = flow {
     val posters: List<Poster> = posterDao.getPosterList()
     if (posters.isEmpty()) {
@@ -53,11 +52,8 @@ class MainRepository constructor(
       disneyService.fetchDisneyPosterList()
         // handles the success case when the API request gets a successful response.
         .suspendOnSuccess {
-          data.whatIfNotNull {
-            posterDao.insertPosterList(it)
-            emit(it)
-            onSuccess()
-          }
+          posterDao.insertPosterList(data)
+          emit(data)
         }
         /**
          * handles error cases when the API request gets an error response.
@@ -65,16 +61,15 @@ class MainRepository constructor(
          * maps the [ApiResponse.Failure.Error] to the [PosterErrorResponse] using the mapper.
          */
         .onError(ErrorResponseMapper) {
-          onError("[Code: $code]: $message")
+          Timber.d("[Code: $code]: $message")
         }
         // handles exceptional cases when the API request gets an exception response.
         // e.g., network connection error.
         .onException {
-          onError(message())
+          Timber.d(message())
         }
     } else {
       emit(posters)
-      onSuccess()
     }
-  }.flowOn(Dispatchers.IO)
+  }.onCompletion { onSuccess() }.flowOn(Dispatchers.IO)
 }

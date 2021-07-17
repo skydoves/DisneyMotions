@@ -36,7 +36,6 @@ class LibraryFragment : BindingFragment<FragmentLibraryBinding>(R.layout.fragmen
     super.onCreateView(inflater, container, savedInstanceState)
     return binding {
       viewModel = getSharedViewModel()
-      lifecycleOwner = viewLifecycleOwner
       adapter = PosterLineAdapter()
     }.root
   }

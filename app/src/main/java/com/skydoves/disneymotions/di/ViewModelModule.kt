@@ -25,5 +25,5 @@ val viewModelModule = module {
 
   viewModel { MainViewModel(get()) }
 
-  viewModel { PosterDetailViewModel(get()) }
+  viewModel { (posterId: Long) -> PosterDetailViewModel(posterId, get()) }
 }
