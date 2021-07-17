@@ -26,7 +26,7 @@ import com.skydoves.disneymotions.view.ui.details.PosterDetailActivity
 class PosterLineViewHolder(view: View) : BaseViewHolder(view) {
 
   private lateinit var data: Poster
-  private val binding: ItemPosterLineBinding by bindings(view)
+  private val binding: ItemPosterLineBinding by bindings()
 
   override fun bindData(data: Any) {
     if (data is Poster) {

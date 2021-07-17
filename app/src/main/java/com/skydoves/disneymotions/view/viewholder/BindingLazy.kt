@@ -16,11 +16,11 @@
 
 package com.skydoves.disneymotions.view.viewholder
 
-import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import com.skydoves.baserecyclerviewadapter.BaseViewHolder
 
-inline fun <reified T : ViewDataBinding> bindings(view: View): Lazy<T> =
+inline fun <reified T : ViewDataBinding> BaseViewHolder.bindings(): Lazy<T> =
   lazy(LazyThreadSafetyMode.NONE) {
-    requireNotNull(DataBindingUtil.bind<T>(view)) { "cannot find the matched view to layout." }
+    requireNotNull(DataBindingUtil.bind(itemView)) { "cannot find the matched view to layout." }
   }
