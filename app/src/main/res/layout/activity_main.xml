@@ -12,10 +12,6 @@
       name="pagerAdapter"
       type="com.skydoves.disneymotions.view.ui.main.MainPagerAdapter" />
 
-    <variable
-      name="viewPager"
-      type="androidx.viewpager.widget.ViewPager" />
-
   </data>
 
   <androidx.constraintlayout.widget.ConstraintLayout
