@@ -59,6 +59,11 @@ Unit Tests verify the interactions of viewmodels between repositories and dao & 
 
 ![screenshot483387955](https://user-images.githubusercontent.com/24237865/79007747-c47c1b00-7b96-11ea-95c0-f6579f2d865b.png)
 
+<img src="https://user-images.githubusercontent.com/24237865/141674368-6013d77c-d52b-4bb1-afe4-9a57a06be32f.jpg" width="18%" align="right" />
+
+## Contents Credits
+All copyrights of the contents, concepts, and phrases used for this open-source project belong to [The Walt Disney Company](https://www.disneyplus.com/).
+
 ## Find this repository useful? :heart:
 Support it by joining __[stargazers](https://github.com/skydoves/DisneyMotions/stargazers)__ for this repository. :star: <br>
 And __[follow](https://github.com/skydoves)__ me for my next creations! 🤩
