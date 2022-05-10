@@ -46,12 +46,10 @@ android {
 }
 
 dependencies {
-    // android supports
+    // material
     implementation "com.google.android.material:material:$versions.materialVersion"
-    implementation "androidx.constraintlayout:constraintlayout:$versions.constraintVersion"
 
     // architecture components
-    implementation "androidx.lifecycle:lifecycle-extensions:$versions.lifecycleVersion"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$versions.lifecycleVersion"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$versions.lifecycleVersion"
     implementation "androidx.room:room-runtime:$versions.roomVersion"
