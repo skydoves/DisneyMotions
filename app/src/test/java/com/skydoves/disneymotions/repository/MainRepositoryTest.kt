@@ -28,8 +28,6 @@ import com.skydoves.disneymotions.network.DisneyService
 import com.skydoves.disneymotions.persistence.PosterDao
 import com.skydoves.disneymotions.utils.MockTestUtil.mockPosterList
 import com.skydoves.sandwich.ApiResponse
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.runBlocking
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.core.Is.`is`
@@ -38,21 +36,18 @@ import org.junit.Rule
 import org.junit.Test
 import retrofit2.Response
 
-@ExperimentalCoroutinesApi
 class MainRepositoryTest {
 
   private lateinit var repository: MainRepository
   private val service: DisneyService = mock()
   private val posterDao: PosterDao = mock()
 
-  @ExperimentalCoroutinesApi
   @get:Rule
   var coroutinesRule = MainCoroutinesRule()
 
   @get:Rule
   var instantExecutorRule = InstantTaskExecutorRule()
 
-  @ExperimentalCoroutinesApi
   @Before
   fun setup() {
     repository = MainRepository(service, posterDao)

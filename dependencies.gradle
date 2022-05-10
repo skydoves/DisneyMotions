@@ -1,48 +1,47 @@
 ext.versions = [
     minSdk                 : 21,
-    compileSdk             : 30,
+    compileSdk             : 31,
     versionCode            : 5,
     versionName            : '1.0.4',
 
     // gradle plugins
-    gradleBuildTool        : '7.0.2',
-    spotlessGradle         : '5.15.0',
+    gradleBuildTool        : '7.1.2',
+    spotlessGradle         : '6.4.1',
     versionPlugin          : '0.23.0',
 
     // kotlin
-    kotlin                 : '1.4.32',
+    kotlin                 : '1.6.21',
 
-    // support library
-    materialVersion        : '1.4.0',
-    constraintVersion      : '2.0.4',
+    // material
+    materialVersion        : '1.6.0',
 
     // architecture components
-    lifecycleVersion       : '2.2.0',
-    roomVersion            : '2.2.6',
+    lifecycleVersion       : '2.4.1',
+    roomVersion            : '2.4.2',
     archCompomentVersion   : '2.1.0',
 
     // binding
-    bindablesVersion       : '1.0.8',
+    bindablesVersion       : '1.0.9',
 
     // di
     koinVersion            : '2.0.1',
 
     // network
     retrofitVersion        : '2.9.0',
-    okhttpVersion          : '4.9.0',
-    sandwichVersion        : '1.2.0',
+    okhttpVersion          : '4.9.3',
+    sandwichVersion        : '1.2.4',
 
     // coroutines
-    coroutinesVersion      : '1.4.3',
+    coroutinesVersion      : '1.6.1',
 
     // glide
-    glideVersion           : '4.12.0',
+    glideVersion           : '4.13.2',
 
     // adapter
     baseAdapter            : '1.0.4',
 
     // whatIf
-    whatIfVersion          : '1.1.0',
+    whatIfVersion          : '1.1.1',
 
     // bundler
     bundlerVersion         : '1.0.4',
@@ -51,7 +50,7 @@ ext.versions = [
     androidBottomBarVersion: '1.0.2',
 
     // debugging
-    timberVersion          : '4.7.1',
+    timberVersion          : '5.0.1',
 
     // unit test
     junitVersion           : '4.13.1',

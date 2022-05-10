@@ -20,24 +20,24 @@ package com.skydoves.disneymotions
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.test.TestCoroutineDispatcher
-import kotlinx.coroutines.test.TestCoroutineScope
+import kotlinx.coroutines.test.TestDispatcher
+import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.setMain
-import org.junit.rules.TestRule
+import org.junit.rules.TestWatcher
 import org.junit.runner.Description
-import org.junit.runners.model.Statement
 
 @ExperimentalCoroutinesApi
-class MainCoroutinesRule : TestRule, TestCoroutineScope by TestCoroutineScope() {
+class MainCoroutinesRule(
+  val testDispatcher: TestDispatcher = UnconfinedTestDispatcher()
+) : TestWatcher() {
 
-  private val testCoroutinesDispatcher = TestCoroutineDispatcher()
+  override fun starting(description: Description?) {
+    Dispatchers.setMain(testDispatcher)
+  }
 
-  override fun apply(base: Statement?, description: Description?) = object : Statement() {
-    override fun evaluate() {
-      Dispatchers.setMain(testCoroutinesDispatcher)
-      base?.evaluate()
-      Dispatchers.resetMain()
-    }
+  override fun finished(description: Description?) {
+    super.finished(description)
+    Dispatchers.resetMain()
   }
 }

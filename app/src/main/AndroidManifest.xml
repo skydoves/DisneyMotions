@@ -17,7 +17,9 @@
     <activity
       android:name=".view.ui.details.PosterDetailActivity"
       android:launchMode="singleTop" />
-    <activity android:name=".view.ui.main.MainActivity">
+    <activity
+        android:exported="true"
+        android:name=".view.ui.main.MainActivity">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
 
